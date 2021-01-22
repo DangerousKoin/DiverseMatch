@@ -7,7 +7,8 @@ const SALT_ROUNDS = 6;
 const contactListSchema = new mongoose.Schema([
   {
     type: Object,
-    contact: { type: mongoose.Schema.Types.ObjectId, ref: 'Contact'}
+    service: String,
+    contactInfo: String
   }
 ], {
   timestamps: true
@@ -65,7 +66,7 @@ const userSchema = new mongoose.Schema({
   seekRange: Number, // same as above
   interests: [interestsSchema],
   dislikes: [dislikesSchema],
-  photoUrl: String, // change to avatar ********* <------ *********
+  avatar: String,
   photoAlbum: [photoAlbumSchema]
 }, {
   timestamps: true
