@@ -4,10 +4,66 @@ const { post } = require('../routes/api/users');
 
 const SALT_ROUNDS = 6;
 
+const contactListSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
+const matchRequestsSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
+const matchListSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
+const interestsSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
+const dislikesSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
+const photoAlbumSchema = new mongoose.Schema([
+  {
+    type: Object
+  }
+], {
+  timestamps: true
+});
+
 const userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
   password: String,
-  photoUrl: String  // string from aws!
+  contactList: [contactListSchema],  // ways to talk to matches, kept private
+  matchRequests: [matchRequestsSchema], // user likes another user
+  matchList: [matchListSchema], // list of users with two way match
+  ageRange: Number,  // 1 = (18-24), 2 = (25-30), etc.
+  seekRange: Number, // same as above
+  interests: [interestsSchema],
+  dislikes: [dislikesSchema],
+  photoUrl: String, // change to avatar ********* <------ *********
+  photoAlbum: [photoAlbumSchema]
 }, {
   timestamps: true
 });
