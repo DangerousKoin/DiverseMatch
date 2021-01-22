@@ -6,7 +6,8 @@ const SALT_ROUNDS = 6;
 
 const contactListSchema = new mongoose.Schema([
   {
-    type: Object
+    type: Object,
+    contact: { type: mongoose.Schema.Types.ObjectId, ref: 'Contact'}
   }
 ], {
   timestamps: true
@@ -14,7 +15,7 @@ const contactListSchema = new mongoose.Schema([
 
 const matchRequestsSchema = new mongoose.Schema([
   {
-    type: Object
+    type: Object,
   }
 ], {
   timestamps: true
@@ -30,7 +31,8 @@ const matchListSchema = new mongoose.Schema([
 
 const interestsSchema = new mongoose.Schema([
   {
-    type: Object
+    type: Object,
+    topic: { type: mongoose.Schema.Types.ObjectId, ref: 'Topic'}
   }
 ], {
   timestamps: true
@@ -38,7 +40,8 @@ const interestsSchema = new mongoose.Schema([
 
 const dislikesSchema = new mongoose.Schema([
   {
-    type: Object
+    type: Object,
+    topic: { type: mongoose.Schema.Types.ObjectId, ref: 'Topic'}
   }
 ], {
   timestamps: true
