@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const postsCtrl = require('../../controllers/posts');
+const topicsCtrl = require('../../controllers/topics');
 const multer = require('multer');
 const upload = multer();
 // /*---------- Public Routes ----------*/
-router.post('/',upload.single('photo'), postsCtrl.create);
-router.get('/', postsCtrl.index)
+router.post('/',upload.single('photo'), topicsCtrl.create);
+router.get('/', topicsCtrl.index)
 
 
 /*---------- Protected Routes ----------*/

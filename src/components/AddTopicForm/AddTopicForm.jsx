@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Button, Form, Segment } from 'semantic-ui-react'
 
-export default function AddPuppyForm(props){
+export default function AddTopicForm(props){
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
     caption: ''
@@ -26,7 +26,7 @@ export default function AddPuppyForm(props){
     const formData = new FormData()
     formData.append('photo', selectedFile)
     formData.append('caption', state.caption)
-    props.handleAddPost(formData)
+    props.handleAddTopic(formData)
     // Have to submit the form now! We need a function!
   }
 
@@ -40,9 +40,9 @@ export default function AddPuppyForm(props){
             
               <Form.Input
                   className="form-control"
-                  name="caption"
-                  value={state.caption}
-                  placeholder="What's on your pups mind?"
+                  name="description"
+                  value={state.description}
+                  placeholder="What is the topic about?"
                   onChange={handleChange}
                   required
               />   
@@ -57,7 +57,7 @@ export default function AddPuppyForm(props){
                 type="submit"
                 className="btn"
               >
-                ADD PUPPY
+                ADD TOPIC
               </Button>
             </Form>
           </Segment>
