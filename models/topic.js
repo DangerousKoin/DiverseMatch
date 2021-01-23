@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema({
   title: String,
-  iconURL: String,
+  icon: String,
   description: String,
 })
  

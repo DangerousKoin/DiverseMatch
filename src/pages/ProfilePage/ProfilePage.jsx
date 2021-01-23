@@ -28,7 +28,7 @@ export default function ProfilePage({ user, handleLogout }) {
             const data = await userService.getProfile(username);
             console.log(data)
             setLoading(() => false)
-            setPosts(() => [...data.posts])
+            // setPosts(() => [...data.posts])
             setProfileUser(() => data.user)
         } catch (err) {
             console.log(err)
@@ -37,24 +37,24 @@ export default function ProfilePage({ user, handleLogout }) {
     }
 
 
-    async function addLike(postId) {
-        try {
-            const data = await likesAPI.create(postId);
-            console.log(data, ' this is from addLike')
-            getProfile()
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // async function addLike(postId) {
+    //     try {
+    //         const data = await likesAPI.create(postId);
+    //         console.log(data, ' this is from addLike')
+    //         getProfile()
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
-    async function removeLike(likeId) {
-        try {
-            const data = await likesAPI.removeLike(likeId);
-            getProfile();
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // async function removeLike(likeId) {
+    //     try {
+    //         const data = await likesAPI.removeLike(likeId);
+    //         getProfile();
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
 
     useEffect(() => {
@@ -89,9 +89,9 @@ export default function ProfilePage({ user, handleLogout }) {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row centered>
-                        <Grid.Column style={{ maxWidth: 750 }}>
+                        {/* <Grid.Column style={{ maxWidth: 750 }}>
                             <PostFeed isProfile={true} posts={posts} numPhotosCol={3} addLike={addLike} removeLike={removeLike} user={user} />
-                        </Grid.Column>
+                        </Grid.Column> */}
                     </Grid.Row>
                 </Grid>
             }
