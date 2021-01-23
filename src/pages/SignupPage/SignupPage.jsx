@@ -67,7 +67,6 @@ export default function SignUpPage(props){
   function handleFileInput(e){
     setSelectedFile(e.target.files[0])
   }
- 
     
     return (
         <>
@@ -102,12 +101,12 @@ export default function SignUpPage(props){
                       required
                     />
                     <Form.Field> 
-                        <Form.Input
-                          type="file"
-                          name="photo"
-                          placeholder="upload image"
-                          onChange={handleFileInput}
-                        />      
+                      <Form.Input
+                        type="file"
+                        name="photo"
+                        placeholder="upload image"
+                        onChange={handleFileInput}
+                      />      
                     </Form.Field>
                     <Button
                       type="submit"
@@ -119,7 +118,6 @@ export default function SignUpPage(props){
                   </Segment>
                   {error ? <ErrorMessage error={error} /> : null}
                 </Form>
-               
             </Grid.Column>
           </Grid>
         </>

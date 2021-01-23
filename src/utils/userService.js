@@ -9,8 +9,8 @@ function signup(user) {
   })
   .then(res => {
     if (res.ok) return res.json();
-    // Probably a duplicate email
-    throw new Error('Email already taken!');
+    // Probably a duplicate username
+    throw new Error('Username already taken!');
   })
   // Parameter destructuring!
   .then(({token}) => tokenService.setToken(token));
