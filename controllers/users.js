@@ -2,7 +2,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 const { v4: uuidv4 } = require('uuid');
-const Post = require('../models/topic');
+const Topic = require('../models/topic');
 const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3(); // initialize the construcotr
 // now s3 can crud on our s3 buckets
@@ -68,8 +68,8 @@ async function login(req, res) {
 async function profile(req, res){
   try {
     const user = await User.findOne({username: req.params.username})
-    const posts = await Post.find({user: user._id});
-    res.status(200).json({posts: posts, user: user})
+    const topics = await Topic.find({user: user._id});
+    res.status(200).json({topics: topics, user: user})
   } catch(err){
     return res.status(401).json(err)
   }
