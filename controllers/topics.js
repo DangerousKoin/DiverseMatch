@@ -15,7 +15,7 @@ function create(req, res){
         const params = {Bucket: 'photocollector', Key: filePath, Body: req.file.buffer};
         s3.upload(params, async function(err, data){
                 // data.Location is the address where our image is stored on aws
-            const topic = await Topic.create({caption: req.body.caption, user: req.user, photoUrl: data.Location});
+            const topic = await Topic.create({title: req.body.title, description: req.body.description, user: req.user, icon: data.Location});
             const populatedUserTopic = await topic.populate('user').execPopulate();
             res.status(201).json({topic: populatedUserTopic})
         })
@@ -33,7 +33,7 @@ async function index(req, res){
         // this populates the user when you find the posts
         // so you'll have access to the users information 
         // when you fetch teh posts
-        const topicss = await Topic.find({}).populate('user').exec() // userSchema.set('toObject') gets invoked, to delete the password
+        const topics = await Topic.find({}).populate('user').exec() // userSchema.set('toObject') gets invoked, to delete the password
         // when we populate the user so we don't have to worry about sending over the password!
         res.status(200).json({topics})
     } catch(err){

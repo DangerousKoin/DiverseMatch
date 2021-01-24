@@ -25,7 +25,8 @@ export default function AddTopicForm(props){
              
     const formData = new FormData()
     formData.append('photo', selectedFile)
-    formData.append('caption', state.caption)
+    formData.append('description', state.description)
+    formData.append('title', state.title)
     props.handleAddTopic(formData)
     // Have to submit the form now! We need a function!
   }
@@ -37,12 +38,20 @@ export default function AddTopicForm(props){
         <Segment>
         
             <Form  autoComplete="off" onSubmit={handleSubmit}>
-            
+
+            <Form.Input
+                  className="form-control"
+                  name="title"
+                  value={state.title}
+                  placeholder="topic title"
+                  onChange={handleChange}
+                  required
+              />
               <Form.Input
                   className="form-control"
                   name="description"
                   value={state.description}
-                  placeholder="What is the topic about?"
+                  placeholder="topic description"
                   onChange={handleChange}
                   required
               />   

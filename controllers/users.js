@@ -27,7 +27,7 @@ function signup(req, res) {
   //////////////////////////////////////////////////////////////////////////////////
   s3.upload(params, async function(err, data){
     console.log(data, 'from aws') // data.Location is our photoUrl that exists on aws
-    const user = new User({...req.body, photoUrl: data.Location});
+    const user = new User({...req.body, avatar: data.Location});
     try {
       await user.save();
       const token = createJWT(user); // user is the payload so this is the object in our jwt

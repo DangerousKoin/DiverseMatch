@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
-// import PostFeed from '../../components/PostFeed/PostFeed';
+import TopicFeed from '../../components/TopicFeed/TopicFeed';
 import PageHeader from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
 
 export default function ProfilePage({ user, handleLogout }) {
 
-    // const [posts, setPosts] = useState([])
+    const [topics, setTopics] = useState([])
     const [profileUser, setProfileUser] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -27,7 +27,7 @@ export default function ProfilePage({ user, handleLogout }) {
             const data = await userService.getProfile(username);
             console.log(data)
             setLoading(() => false)
-            // setPosts(() => [...data.posts])
+            setTopics(() => [...data.topics])
             setProfileUser(() => data.user)
         } catch (err) {
             console.log(err)
@@ -71,7 +71,7 @@ export default function ProfilePage({ user, handleLogout }) {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row centered>
-                       
+                        <TopicFeed isProfile={true} topics={topics} numPhotosCol={3} user={user} />
                     </Grid.Row>
                 </Grid>
             }
