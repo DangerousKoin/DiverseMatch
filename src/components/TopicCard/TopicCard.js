@@ -7,13 +7,12 @@ function TopicCard({topic}) {
   return (
     <Card key={topic._id}>
           <Card.Content textAlign='left'>
+          <Card.Header floated="right">Topic: {topic.title}</Card.Header>
               <Image
                   floated='left'
                   size='large'
-                  avatar
                   src={topic.icon ? topic.icon : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
               />
-              <Card.Header floated="right">{topic.title}</Card.Header>
           </Card.Content>
       <Card.Content>
       <Card.Description>

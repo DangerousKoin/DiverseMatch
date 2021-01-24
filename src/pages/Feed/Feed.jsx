@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PageHeader from '../../components/Header/Header';
+import TopicFeed from '../../components/TopicFeed/TopicFeed';
 import AddTopicForm from '../../components/AddTopicForm/AddTopicForm';
 import * as topicsAPI from '../../utils/topicService';
 import {  Grid } from 'semantic-ui-react'
@@ -58,7 +59,7 @@ export default function Feed({user, handleLogout}){
         </Grid.Row>
         <Grid.Row>
         <Grid.Column style={{maxWidth: 450}}>
-          
+          <TopicFeed topics={topics} isProfile={true} numPhotosCol={1} user={user} />
         </Grid.Column>
         </Grid.Row>
       </Grid>
