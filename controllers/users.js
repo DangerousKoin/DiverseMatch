@@ -68,7 +68,8 @@ async function login(req, res) {
 async function profile(req, res){
   try {
     const user = await User.findOne({username: req.params.username})
-    const topics = await Topic.find({user: user._id});
+    const topics = await Topic.find({user: user._id}); 
+    // ok... so this is where we find by something...
     res.status(200).json({topics: topics, user: user})
   } catch(err){
     return res.status(401).json(err)

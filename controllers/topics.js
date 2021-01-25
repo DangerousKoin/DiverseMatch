@@ -4,11 +4,21 @@ const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
+    search,
     create,
     index
 }
 
-
+function search(req, res){
+    console.log(req.file, req.body, 'this is search method', req.user)
+    try {
+        const searchResult = sTopic.find({ $text: { $search: req.body.keyword } }, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } );
+     res.status(201).json({result: searchResult})
+    } catch(err){
+        console.log(err)
+        res.json({data: err})
+    }
+}
 
 // We have to use AWS and multer again for this
 function create(req, res){
