@@ -3,6 +3,7 @@ import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import TopicFeed from '../../components/TopicFeed/TopicFeed';
+import TopicSearch from '../../components/TopicFeed/TopicSearch';
 import PageHeader from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
 
@@ -65,6 +66,9 @@ export default function ProfilePage({ user, handleLogout }) {
                         <Grid.Column>
                             <ProfileBio user={profileUser} />
                         </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row centered>
+                        <TopicSearch isProfile={true} topics={topics} user={user} />
                     </Grid.Row>
                     <Grid.Row centered>
                         <TopicFeed isProfile={true} topics={topics} numPhotosCol={3} user={user} />

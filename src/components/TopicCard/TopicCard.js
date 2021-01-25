@@ -15,9 +15,9 @@ function TopicCard({topic}) {
               />
           </Card.Content>
       <Card.Content>
-      <Card.Description>
-        {topic.description}
-      </Card.Description>
+        <Card.Description>
+          {topic.description}
+        </Card.Description>
       </Card.Content>
     </Card>
   );

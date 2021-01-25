@@ -7,6 +7,9 @@ module.exports = {
     create,
     index
 }
+
+
+
 // We have to use AWS and multer again for this
 function create(req, res){
     console.log(req.file, req.body, 'this is create method', req.user)
