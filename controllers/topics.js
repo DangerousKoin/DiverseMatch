@@ -12,7 +12,7 @@ module.exports = {
 function search(req, res){
     console.log(req.file, req.body, 'this is search method', req.user)
     try {
-        const searchResult = sTopic.find({ $text: { $search: req.body.keyword } }, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } );
+        const searchResult = Topic.find({ $text: { $search: req.body.keyword } }, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } );
      res.status(201).json({result: searchResult})
     } catch(err){
         console.log(err)

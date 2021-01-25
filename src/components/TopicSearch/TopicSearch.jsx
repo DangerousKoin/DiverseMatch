@@ -52,9 +52,9 @@ export default function TopicSearch({topics, keyword, setKeyword}){
     
         <Card.Group itemsPerRow={numPhotosCol} stackable>
            
-                {topics.map((topic) => {
+                {searchResult.map((topic) => {
                 return ( 
-                        <TopicCard topic={topic} key={topic._id} isProfile={isProfile} user={user} />
+                        <TopicCard topic={topic} key={topic._id} />
                     )
                 })}
         </Card.Group>

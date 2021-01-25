@@ -3,7 +3,7 @@ import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import TopicFeed from '../../components/TopicFeed/TopicFeed';
-import TopicSearch from '../../components/TopicFeed/TopicSearch';
+import TopicSearch from '../../components/TopicSearch/TopicSearch';
 import PageHeader from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
 
