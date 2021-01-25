@@ -4,21 +4,10 @@ const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
-    search,
     create,
     index
 }
 
-function search(req, res){
-    console.log(req.file, req.body, 'this is search method', req.user)
-    try {
-        const searchResult = Topic.find({ $text: { $search: req.body.keyword } }, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } );
-     res.status(201).json({result: searchResult})
-    } catch(err){
-        console.log(err)
-        res.json({data: err})
-    }
-}
 
 // We have to use AWS and multer again for this
 function create(req, res){
@@ -46,7 +35,10 @@ async function index(req, res){
         // this populates the user when you find the posts
         // so you'll have access to the users information 
         // when you fetch teh posts
-        const topics = await Topic.find({}).populate('user').exec() // userSchema.set('toObject') gets invoked, to delete the password
+
+        // it looks like you can integrate the search keywords right into the index search and make it available everywhere
+        const topics = await Topic.find({$text: { $search: req.body.keyword } }, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" }}).populate('user').exec() 
+        // userSchema.set('toObject') gets invoked, to delete the password
         // when we populate the user so we don't have to worry about sending over the password!
         res.status(200).json({topics})
     } catch(err){
