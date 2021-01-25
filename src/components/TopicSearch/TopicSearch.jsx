@@ -1,8 +1,25 @@
+// for search, we are combining a few components together
+// we first pass our keyword to the controller
+// then the controller sends the resulting array of matches back
+// mongodb also has a built in way to filter dislikes for a stretch goal
+
+// with the resulting matches, we then display the topic cards and use onClick to
+// submit the form to user interests array
+
+
+
 import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react'
 import { Card  } from 'semantic-ui-react'
 import TopicCard from '../TopicCard/TopicCard';
 
+export default function AddInterestForm(props){
+  const [state, setState] = useState({})
+
+  const searchResult = props.searchIndex.find(
+    { $text: { $search: state.keyword } }, 
+    { score: { $meta: "textScore" } }
+    ).sort( { score: { $meta: "textScore" } } );
       
 function handleChange(e){
   setState({
@@ -14,50 +31,43 @@ function handleChange(e){
 function handleSubmit(e){
   e.preventDefault()
            
+  // need to fix our outgoing form data
   const formData = new FormData()
-  formData.append('photo', selectedFile)
-  formData.append('description', state.description)
-  formData.append('title', state.title)
+  formData.append('topic', state.topic)
   props.handleAddTopic(formData)
   // Have to submit the form now! We need a function!
 }
 
-
-export default function TopicSearch({topics, keyword, setKeyword}){
-
-  const searchIndex = topics.createIndex( { title: "text", description: "text" } );
-  const searchResult = searchIndex.find(
-    { $text: { $search: req.body.keyword } }, 
-    { score: { $meta: "textScore" } }
-    ).sort( { score: { $meta: "textScore" } } );
-
-  const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
   return (
-    <input 
-     style={BarStyling} // Convert this to direct styling preferably
-     key="random1"
-     value={keyword}
-     placeholder={"Search Topics"}
-     onChange={(e) => setKeyword(e.target.value)} // on input of text, this initiates a callback with setKeyword
-    />
-    <Form.Input
-        className="search-input"
-        name="title"
-        value={state.title} // .keyword??
-        placeholder="topic title"
-        onChange={handleChange}
-        required
-    />
-
+    <Segment>
+        
+      <Form  autoComplete="off" onSubmit={handleSubmit}>
+        <Form.Input
+            className="search-input"
+            name="title"
+            value={state.keyword} // .keyword from props!
+            placeholder="topic title"
+            onChange={handleChange}
+            required
+        />
+        <Button
+          type="submit"
+          className="btn"
+        >
+          ADD TOPIC
+        </Button>
+      </Form>
     
-        <Card.Group itemsPerRow={numPhotosCol} stackable>
-           
-                {searchResult.map((topic) => {
-                return ( 
-                        <TopicCard topic={topic} key={topic._id} />
-                    )
-                })}
-        </Card.Group>
+      <Card.Group stackable>
+          
+              {searchResult.map((topic) => {
+              return ( 
+                      <TopicCard topic={topic} key={topic._id} />
+                  )
+              })}
+      </Card.Group>
+
+    </Segment>
   
-    )
+  );
 }

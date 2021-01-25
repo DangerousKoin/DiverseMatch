@@ -5,7 +5,7 @@ import { Button, Form, Segment } from 'semantic-ui-react'
 export default function AddTopicForm(props){
   const [selectedFile, setSelectedFile] = useState('')
   const [state, setState] = useState({
-    caption: ''
+    description: ''
   })
 
   function handleFileInput(e){
