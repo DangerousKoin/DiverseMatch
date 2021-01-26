@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Grid, Loader } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import TopicFeed from '../../components/TopicFeed/TopicFeed';
@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 
 export default function ProfilePage({ user, handleLogout }) {
 
-    const [searchResults, setSearchResults] = useState([])
     const [topics, setTopics] = useState([])
     const [profileUser, setProfileUser] = useState({})
     const [loading, setLoading] = useState(true)

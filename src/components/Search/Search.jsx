@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react'
+import { Button, Form, Segment } from 'semantic-ui-react';
 import { Card  } from 'semantic-ui-react'
 import TopicCard from '../TopicCard/TopicCard';
-import searchService from '../../utils/searchService'
+import searchService from '../../utils/searchService';
 
-export default function Search(searchResults){
+export default function Search(){
   const [state, setState] = useState({})
-      
+      let searchResults = [];
   function handleChange(e){
     setState({
       ...state,
@@ -19,11 +19,10 @@ export default function Search(searchResults){
     // need to fix our outgoing form data
     const formData = new FormData()
     formData.append('title', state.title)
-    const searchResult = searchService.search(state.title)
-    console.log(searchResult);
-
+    searchResults = searchService.search(state.title)
+  console.log("component results ", searchResults);
   }
-
+  
   return (
     <Segment>
         
@@ -45,7 +44,7 @@ export default function Search(searchResults){
     
 
 
-    {/* want to put results here
+   
       <Card.Group stackable>
           
               {searchResults.map((topic) => {
@@ -53,7 +52,7 @@ export default function Search(searchResults){
                       <TopicCard topic={topic} key={topic._id} />
                   )
               })}
-      </Card.Group> */}
+      </Card.Group>
 
     </Segment>
   
