@@ -34,15 +34,11 @@ async function index(req, res){
     try {
         // this populates the user when you find the posts
         // so you'll have access to the users information 
-        // when you fetch teh posts
-
-        // it looks like you can integrate the search keywords right into the index search and make it available everywhere
-        const searchIndex = topics.createIndex( { title: "text", description: "text" } );
-        
+        // when you fetch teh posts        
         const topics = await Topic.find({}).populate('user').exec() 
         // userSchema.set('toObject') gets invoked, to delete the password
         // when we populate the user so we don't have to worry about sending over the password!
-        res.status(200).json({topics, searchIndex})
+        res.status(200).json({topics})
     } catch(err){
 
     }

@@ -3,12 +3,13 @@ import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import TopicFeed from '../../components/TopicFeed/TopicFeed';
-import TopicSearch from '../../components/TopicSearch/TopicSearch';
+import Search from '../../components/Search/Search';
 import PageHeader from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
 
 export default function ProfilePage({ user, handleLogout }) {
 
+    const [searchResults, setSearchResults] = useState([])
     const [topics, setTopics] = useState([])
     const [profileUser, setProfileUser] = useState({})
     const [loading, setLoading] = useState(true)
@@ -22,11 +23,12 @@ export default function ProfilePage({ user, handleLogout }) {
         try {
 
             const username = location.pathname.substring(1)
+            
             // location.pathname returns /jimbo so we need to cut off the / using the js method substring
             // This gets the username from the url! 
-            console.log(username)
+            console.log("ProfilePage username", username)
             const data = await userService.getProfile(username);
-            console.log(data)
+            console.log("ProfilePage data", data)
             setLoading(() => false)
             setTopics(() => [...data.topics])
             setProfileUser(() => data.user)
@@ -35,9 +37,6 @@ export default function ProfilePage({ user, handleLogout }) {
             setError(err)
         }
     }
-
-
-
 
 
     useEffect(() => {
@@ -68,7 +67,7 @@ export default function ProfilePage({ user, handleLogout }) {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row centered>
-                        <TopicSearch isProfile={true} topics={topics} user={user} />
+                        <Search />
                     </Grid.Row>
                     <Grid.Row centered>
                         <TopicFeed isProfile={true} topics={topics} numPhotosCol={3} user={user} />
