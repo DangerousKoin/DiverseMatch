@@ -16,11 +16,10 @@ export default function Search(){
 
   function handleSubmit(e){
     e.preventDefault()
-    // need to fix our outgoing form data
     const formData = new FormData()
     formData.append('title', state.title)
     searchResults = searchService.search(state.title)
-  console.log("component results ", searchResults);
+    console.log("component results ", searchResults);
   }
   
   return (
@@ -48,10 +47,12 @@ export default function Search(){
       <Card.Group stackable>
           
               {searchResults.map((topic) => {
+                
               return ( 
                       <TopicCard topic={topic} key={topic._id} />
                   )
               })}
+              
       </Card.Group>
 
     </Segment>
