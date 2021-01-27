@@ -72,33 +72,38 @@ export default function ProfilePage({ user, handleLogout }) {
                 </Grid>
                 :
                 <Grid>
-                    <Grid.Column style={{ minWidth: 250}}>
+                    <Grid.Column style={{ minWidth: 260, maxWidth: '40%',  }}>
+
                         <Grid.Row centered>
-                            <PageHeader user={user} handleLogout={handleLogout} />
+                            <PageHeader user={user} />
                         </Grid.Row>
                         
                         <Grid.Row centered>
+                        <h2>Find Interests:</h2>
                             <Search />
+                        
+                            <TopicFeed isProfile={true} topics={topics} numPhotosCol={1} user={user} />
                         </Grid.Row>
+                        
+                    </Grid.Column>
 
+                    <Grid.Column  style={{ width: '60%' }}>
                         <Grid.Row>
-                            <Grid.Column style={{ maxWidth: 150 }}>
+                            <ProfileBio user={profileUser} handleLogout={handleLogout} />
+                            
+                        </Grid.Row>
+                        
+                        <Grid.Row>
+                            <Grid.Column>
                                 <AddTopicForm handleAddTopic={handleAddTopic}/>
                             </Grid.Column>
                         </Grid.Row>
 
-                        <Grid.Row style={{ maxWidth: 150}}>
+                        <Grid.Row >
+                        <h2>Added Topics:</h2>
                             <TopicFeed isProfile={true} topics={topics} numPhotosCol={1} user={user} />
                         </Grid.Row>
-                    </Grid.Column>
-                    <Grid.Column style={{ minWidth: 450}}>
-                        <Grid.Row>
-                          
-                                <ProfileBio user={profileUser} />
-                      
-                        </Grid.Row>
-                        
-                        
+
                     </Grid.Column>
                 </Grid>
             }

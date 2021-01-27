@@ -4,10 +4,13 @@ import { Card  } from 'semantic-ui-react'
 import TopicCard from '../TopicCard/TopicCard';
 import TopicFeed from '../../components/TopicFeed/TopicFeed';
 import * as topicService from '../../utils/topicService';
+import userService from '../../utils/userService';
+
 
 export default function Search(){
   const [state, setState] = useState({});
   const [results, setResults] = useState([]);
+  const [topics, setTopics] = useState([])
 
   
 
@@ -20,8 +23,10 @@ export default function Search(){
 
   function handleSubmit(e){
     e.preventDefault()
+    const data = userService.getProfile(e.username);
     const formData = new FormData()
     formData.append('title', state.title)
+    setTopics(() => [...data.topics])
     const searchResults = topicService.search(state.title);
     console.log("component results ", searchResults);
     
@@ -45,16 +50,8 @@ export default function Search(){
           Search
         </Button>
       </Form>
-    
 
-
-   Results Below:
-      <Card.Group stackable>
-          {console.log(results)}
-      <TopicFeed topics={results} numPhotosCol={1} />
-
-              
-      </Card.Group>
+      <TopicFeed isProfile={true} topics={topics} numPhotosCol={1} />
 
     </Segment>
   

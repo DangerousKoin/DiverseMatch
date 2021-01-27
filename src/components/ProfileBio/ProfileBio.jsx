@@ -1,8 +1,10 @@
 import React from 'react';
 import {  Image, Grid, Segment } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 
-export default function ProfileBio({user}) { 
+
+export default function ProfileBio({user, handleLogout}) { 
   return (
   <Grid textAlign='center' columns={2}>
     <Grid.Row>
@@ -12,6 +14,7 @@ export default function ProfileBio({user}) {
       <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
         <Segment vertical>
            <h3>{user.username}</h3>
+           <Link to='' onClick={handleLogout}>Logout</Link>
         </Segment>
           
       </Grid.Column>
