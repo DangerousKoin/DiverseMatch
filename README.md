@@ -22,8 +22,8 @@
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
-* https://diverse-match.herokuapp.com/
+## Project Link
+https://diverse-match.herokuapp.com/
 
 
 <!-- ROADMAP -->
