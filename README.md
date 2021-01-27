@@ -1,9 +1,9 @@
 # Diverse Match!
-<img src="https://i.imgur.com/pRikt4L.png" width="100">
-<img src="https://i.imgur.com/dw4hyFa.png" width="100">
-<img src="https://i.imgur.com/zYQNFoR.png" width="100">
-<img src="https://i.imgur.com/mcd27Hd.png" width="100">
-<img src="https://i.imgur.com/w1Fbkgk.png" width="100">
+<img src="https://i.imgur.com/pRikt4L.png" width="200">
+<img src="https://i.imgur.com/dw4hyFa.png" width="200">
+<img src="https://i.imgur.com/zYQNFoR.png" width="200">
+<img src="https://i.imgur.com/mcd27Hd.png" width="200">
+<img src="https://i.imgur.com/w1Fbkgk.png" width="200">
 
 
 <!-- ABOUT THE PROJECT -->
