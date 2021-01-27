@@ -6,6 +6,8 @@ import TopicFeed from '../../components/TopicFeed/TopicFeed';
 import Search from '../../components/Search/Search';
 import PageHeader from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
+import AddTopicForm from '../../components/AddTopicForm/AddTopicForm';
+import * as topicsAPI from '../../utils/topicService';
 
 export default function ProfilePage({ user, handleLogout }) {
 
@@ -42,6 +44,21 @@ export default function ProfilePage({ user, handleLogout }) {
         getProfile()
     }, [])
 
+    async function handleAddTopic(topic){
+
+        const data = await topicsAPI.create(topic);
+
+        // to check to make sure this is working
+        console.log(data, ' data')
+        // after this we'll want to update state
+        // after we get back our new topic
+        // data is the response from our create function in controllers/topics
+        // update the state
+
+        setTopics([data.topic,  ...topics])
+        // to conifrm this check the devtools for your feed component
+        
+    }
 
 
     return (
@@ -55,22 +72,34 @@ export default function ProfilePage({ user, handleLogout }) {
                 </Grid>
                 :
                 <Grid>
-                    <Grid.Row>
-                        <Grid.Column>
+                    <Grid.Column style={{ minWidth: 250}}>
+                        <Grid.Row centered>
                             <PageHeader user={user} handleLogout={handleLogout} />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                        <Grid.Column>
-                            <ProfileBio user={profileUser} />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Search />
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <TopicFeed isProfile={true} topics={topics} numPhotosCol={3} user={user} />
-                    </Grid.Row>
+                        </Grid.Row>
+                        
+                        <Grid.Row centered>
+                            <Search />
+                        </Grid.Row>
+
+                        <Grid.Row>
+                            <Grid.Column style={{ maxWidth: 150 }}>
+                                <AddTopicForm handleAddTopic={handleAddTopic}/>
+                            </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row style={{ maxWidth: 150}}>
+                            <TopicFeed isProfile={true} topics={topics} numPhotosCol={1} user={user} />
+                        </Grid.Row>
+                    </Grid.Column>
+                    <Grid.Column style={{ minWidth: 450}}>
+                        <Grid.Row>
+                          
+                                <ProfileBio user={profileUser} />
+                      
+                        </Grid.Row>
+                        
+                        
+                    </Grid.Column>
                 </Grid>
             }
         </>

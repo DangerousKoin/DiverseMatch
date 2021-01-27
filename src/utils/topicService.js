@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/topics'
+const BASE_URL = '/api/topics/'
 
 export function create(topic){
     return fetch(BASE_URL, {
@@ -10,7 +10,16 @@ export function create(topic){
             'Authorization': 'Bearer ' + tokenService.getToken()
         }
     }).then(res => res.json())
+}
 
+export function search(keyword){
+  return fetch(BASE_URL + 'search', {
+    method: 'POST',
+    body: keyword,
+    headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+  }).then(res => res.json())
 }
 
 export function getAll() {
@@ -20,4 +29,4 @@ export function getAll() {
       }
     })
     .then(res => res.json());
-  }
+}

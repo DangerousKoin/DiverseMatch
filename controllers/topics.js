@@ -5,6 +5,7 @@ const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
     createTopic,
+    search,
     index
 }
 
@@ -29,12 +30,21 @@ function createTopic(req, res){
     }
 }
 
+async function search(req, res){
+    try {
+        console.log(req.body.keyword)
+        const searchResults = await Topic.find({title: req.body.keyword});        
+        res.status(200).json({searchResults})
+    } catch(err){
+
+    }
+}
 
 async function index(req, res){
     try {
-        // this populates the user when you find the posts
+        // this populates the user when you find the topics
         // so you'll have access to the users information 
-        // when you fetch teh posts        
+        // when you fetch the topics        
         const topics = await Topic.find({}).populate('user').exec() 
         // userSchema.set('toObject') gets invoked, to delete the password
         // when we populate the user so we don't have to worry about sending over the password!

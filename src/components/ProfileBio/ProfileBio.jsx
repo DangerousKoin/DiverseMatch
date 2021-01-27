@@ -13,9 +13,6 @@ export default function ProfileBio({user}) {
         <Segment vertical>
            <h3>{user.username}</h3>
         </Segment>
-        <Segment>
-           <span> Bio: {user.bio}</span>
-        </Segment>
           
       </Grid.Column>
     </Grid.Row>

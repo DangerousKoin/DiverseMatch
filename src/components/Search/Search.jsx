@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Card  } from 'semantic-ui-react'
 import TopicCard from '../TopicCard/TopicCard';
-import searchService from '../../utils/searchService';
+import TopicFeed from '../../components/TopicFeed/TopicFeed';
+import * as topicService from '../../utils/topicService';
 
 export default function Search(){
-  const [state, setState] = useState({})
-      let searchResults = [];
+  const [state, setState] = useState({});
+  const [results, setResults] = useState([]);
+
+  
+
   function handleChange(e){
     setState({
       ...state,
@@ -18,8 +22,9 @@ export default function Search(){
     e.preventDefault()
     const formData = new FormData()
     formData.append('title', state.title)
-    searchResults = searchService.search(state.title)
+    const searchResults = topicService.search(state.title);
     console.log("component results ", searchResults);
+    
   }
   
   return (
@@ -43,15 +48,11 @@ export default function Search(){
     
 
 
-   
+   Results Below:
       <Card.Group stackable>
-          
-              {searchResults.map((topic) => {
-                
-              return ( 
-                      <TopicCard topic={topic} key={topic._id} />
-                  )
-              })}
+          {console.log(results)}
+      <TopicFeed topics={results} numPhotosCol={1} />
+
               
       </Card.Group>
 
