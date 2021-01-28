@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import './App.css';
 import userService from '../utils/userService'
 import Feed from '../layouts/Content';
+import { Grid } from 'semantic-ui-react';
 
 function App() {
 
@@ -22,7 +23,14 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/">
-        <Feed user={user} handleLogout={handleLogout}/>
+        <Grid>
+          <Grid.Column>
+            <Sidebar user={user} handleSignUpOrLogin={handleSignUpOrLogin} />
+          </Grid.Column>
+          <Grid.Column>
+            <Content user={user} handleLogout={handleLogout} />
+          </Grid.Column>
+        </Grid>
       </Route>
     </div>
   );
