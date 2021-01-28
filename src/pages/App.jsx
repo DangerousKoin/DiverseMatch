@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import userService from '../utils/userService'
-import Feed from '../layouts/Feed';
+import Feed from '../layouts/Content';
 
 function App() {
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Loader } from 'semantic-ui-react'
 import userService from '../utils/userService';
-import ProfileBio from '../components/ProfileBio';
-import TopicFeed from '../components/TopicFeed';
-import Search from '../components/Search';
-import PageHeader from '../components/Sidebar';
+import ProfileBio from './ProfileBio';
+import TopicFeed from './Search/TopicResults';
+import Search from './Search/TopicSearch';
+import PageHeader from '../layouts/Sidebar';
 import { useLocation } from 'react-router-dom';
-import AddTopicForm from '../components/AddTopicForm';
+import AddTopicForm from './Forms/AddTopicForm';
 import * as topicsAPI from '../utils/topicService';
 
 export default function ProfilePage({ user, handleLogout }) {
