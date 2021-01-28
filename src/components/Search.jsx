@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Card  } from 'semantic-ui-react'
-import TopicCard from '../TopicCard/TopicCard';
-import TopicFeed from '../../components/TopicFeed/TopicFeed';
-import * as topicService from '../../utils/topicService';
-import userService from '../../utils/userService';
+import TopicCard from './TopicCard';
+import TopicFeed from './TopicFeed';
+import * as topicService from '../utils/topicService';
+import userService from '../utils/userService';
 
 
 export default function Search(){

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card  } from 'semantic-ui-react'
-import TopicCard from '../TopicCard/TopicCard';
+import TopicCard from '../components/TopicCard';
 
 
 export default function TopicFeed({topics, isProfile, numPhotosCol, user}){

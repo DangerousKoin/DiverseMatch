@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../components/ErrorMessage';
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
-import userService from '../../utils/userService';
+import userService from '../utils/userService';
 import { useHistory } from 'react-router-dom';
 
 
