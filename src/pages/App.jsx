@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import userService from '../utils/userService'
-import Feed from '../layouts/Content';
+import Content from '../layouts/Content';
+import Sidebar from '../layouts/Sidebar';
 import { Grid } from 'semantic-ui-react';
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       <Route exact path="/">
         <Grid>
           <Grid.Column>
-            <Sidebar user={user} handleSignUpOrLogin={handleSignUpOrLogin} />
+            {/* <Sidebar user={user} handleSignUpOrLogin={handleSignUpOrLogin} /> */}
           </Grid.Column>
           <Grid.Column>
             <Content user={user} handleLogout={handleLogout} />

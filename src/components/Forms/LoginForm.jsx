@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ErrorMessage from '../ErrorMessage'
+import ErrorMessage from '../System/ErrorMessage'
 import userService from '../../utils/userService';
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
-export default function LoginPage(props){
+export default function LoginForm(props){
     const [invalidForm, setValidForm] = useState(false);
     const [error, setError ]          = useState('')
     const [state, setState]       = useState({

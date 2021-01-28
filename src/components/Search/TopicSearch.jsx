@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Card  } from 'semantic-ui-react'
 import TopicCard from '../Cards/TopicCard';
-import TopicFeed from './TopicResults';
 import * as topicService from '../../utils/topicService';
-import userService from '../../utils/userService';
 
 
 export default function Search(){
   const [state, setState] = useState({});
   const [results, setResults] = useState([]);
-  const [topics, setTopics] = useState([])
 
   
 
@@ -23,12 +20,10 @@ export default function Search(){
 
   function handleSubmit(e){
     e.preventDefault()
-    const data = userService.getProfile(e.username);
+    const data = topicService.search(state.title);
     const formData = new FormData()
     formData.append('title', state.title)
-    setTopics(() => [...data.topics])
-    const searchResults = topicService.search(state.title);
-    console.log("component results ", searchResults);
+    setResults(() => [...data.results])
     
   }
   
@@ -51,14 +46,13 @@ export default function Search(){
         </Button>
       </Form>
 
-      <Card.Group itemsPerRow={numPhotosCol} stackable>
-           
-                {topics.map((topic) => {
-                return ( 
-                        <TopicCard topic={topic} key={topic._id} isProfile={isProfile} user={user} />
-                    )
-                })}
-        </Card.Group>
+      <Card.Group itemsPerRow={1} stackable>
+        {results.map((topic) => {
+          return ( 
+                  <TopicCard topic={topic} key={topic._id} />
+              )
+        })}
+      </Card.Group>
 
     </Segment>
   

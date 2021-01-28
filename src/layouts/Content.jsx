@@ -1,11 +1,11 @@
 import React from 'react';
-import PageHeader from './Sidebar';
+import SignupForm from '../components/Forms/SignupForm';
+import LoginForm from '../components/Forms/LoginForm';
 import {  Grid, Modal } from 'semantic-ui-react'
-import ProfileBio from '../components/Displays/ProfileDisplay';
-import Search from '../components/Search/TopicSearch';
+import ProfileDisplay from '../components/Displays/ProfileDisplay';
 
 
-export default function Feed({user, handleLogout}){  
+export default function Content({user, handleLogout}){  
 
 
     return (
@@ -14,14 +14,18 @@ export default function Feed({user, handleLogout}){
       
        <Grid>
         <Grid.Column style={{ minWidth: 350}}>
-          <ProfileBio user={""} />
+          <ProfileDisplay user={user} />
           Need to make user cards!
         </Grid.Column>
       </Grid>
      
      :
-
-     <SignupForm />
+        <Grid>
+          <Grid.Column style={{ minWidth: 350}}>
+            <LoginForm />
+          </Grid.Column>
+        </Grid>
+     
         
 
       }
