@@ -1,6 +1,6 @@
 import React from 'react';
-import PageHeader from '../components/Header';
-import {  Grid } from 'semantic-ui-react'
+import PageHeader from '../components/Sidebar';
+import {  Grid, Modal } from 'semantic-ui-react'
 import ProfileBio from '../components/ProfileBio';
 import Search from '../components/Search';
 
@@ -33,7 +33,7 @@ export default function Feed({user, handleLogout}){
       </Grid>
      
      :
-    
+    // Could we make this a component?
 
      <Modal
       centered={false}

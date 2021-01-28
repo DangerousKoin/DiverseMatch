@@ -4,7 +4,7 @@ import userService from '../utils/userService';
 import ProfileBio from '../components/ProfileBio';
 import TopicFeed from '../components/TopicFeed';
 import Search from '../components/Search';
-import PageHeader from '../components/Header';
+import PageHeader from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import AddTopicForm from '../components/AddTopicForm';
 import * as topicsAPI from '../utils/topicService';
