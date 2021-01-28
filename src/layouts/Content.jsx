@@ -1,7 +1,7 @@
 import React from 'react';
 import PageHeader from './Sidebar';
 import {  Grid, Modal } from 'semantic-ui-react'
-import ProfileBio from '../components/ProfileBio';
+import ProfileBio from '../components/Displays/ProfileDisplay';
 import Search from '../components/Search/TopicSearch';
 
 

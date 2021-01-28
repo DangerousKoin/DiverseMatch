@@ -51,7 +51,14 @@ export default function Search(){
         </Button>
       </Form>
 
-      <TopicFeed isProfile={true} topics={topics} numPhotosCol={1} />
+      <Card.Group itemsPerRow={numPhotosCol} stackable>
+           
+                {topics.map((topic) => {
+                return ( 
+                        <TopicCard topic={topic} key={topic._id} isProfile={isProfile} user={user} />
+                    )
+                })}
+        </Card.Group>
 
     </Segment>
   
