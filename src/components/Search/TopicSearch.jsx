@@ -28,7 +28,7 @@ export default function Search(){
   }
   
   return (
-    <Segment>
+   <>
         
       <Form  autoComplete="off" onSubmit={handleSubmit}>
         <Form.Input
@@ -54,7 +54,7 @@ export default function Search(){
         })}
       </Card.Group>
 
-    </Segment>
+  </>
   
   );
 }
