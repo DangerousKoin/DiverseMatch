@@ -14,7 +14,7 @@ export default function ProfileDisplay({user, handleLogout}) {
       <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
         <Segment vertical>
            <h3>{user.username}</h3>
-           <Link to='' onClick={handleLogout}>Logout</Link>
+           <Link to='/' onClick={handleLogout}>Logout</Link>
         </Segment>
           
       </Grid.Column>

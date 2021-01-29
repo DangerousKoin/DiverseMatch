@@ -13,7 +13,7 @@ export default function Content({user, handleLogout}){
        <Grid>
         <Grid.Column style={{ minWidth: 350}}>
           <Route exact path="/:username">
-            <ProfileDisplay user={user} />
+            <ProfileDisplay user={user} handleLogout={handleLogout}/>
             Topic Form
           </Route>
           <Route exact path="/">

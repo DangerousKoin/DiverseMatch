@@ -44,7 +44,6 @@ function App() {
             </>
           :
             <>
-              <p>hello</p>
               <LoginForm handleSignUpOrLogin={handleSignUpOrLogin}/>
             </>
           }
