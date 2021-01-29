@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 
 
-export default function ProfileBio({user, handleLogout}) { 
+export default function ProfileDisplay({user, handleLogout}) { 
   return (
   <Grid textAlign='center' columns={2}>
     <Grid.Row>

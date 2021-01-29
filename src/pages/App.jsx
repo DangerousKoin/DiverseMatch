@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import userService from '../utils/userService'
 import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
+import LoginForm from '../components/Forms/LoginForm';
 import { Grid } from 'semantic-ui-react';
 
 function App() {
@@ -21,18 +22,34 @@ function App() {
     setUser({user: null})
   }
 
+
+  
   return (
     <div className="App">
-      <Route exact path="/">
-        <Grid>
-          <Grid.Column>
-            {/* <Sidebar user={user} handleSignUpOrLogin={handleSignUpOrLogin} /> */}
-          </Grid.Column>
-          <Grid.Column>
-            <Content user={user} handleLogout={handleLogout} />
-          </Grid.Column>
-        </Grid>
-      </Route>
+      <Switch>
+        <Route path="/">
+          {userService.getUser() ?
+            <>
+              <Grid>
+                
+                <Grid.Column style={{ width: 250 }}>
+                  <Sidebar user={user} />
+                </Grid.Column>
+
+                <Grid.Column style={{ width: 350 }}>
+                  <Content user={user} handleLogout={handleLogout} />
+                </Grid.Column>
+              
+              </Grid>
+            </>
+          :
+            <>
+              <p>hello</p>
+              <LoginForm handleSignUpOrLogin={handleSignUpOrLogin}/>
+            </>
+          }
+        </Route>
+      </Switch>
     </div>
   );
 }
