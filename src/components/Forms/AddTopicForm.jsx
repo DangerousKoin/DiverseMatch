@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import TopicFeed from '../Feeds/TopicFeed';
+import * as topicsAPI from '../../utils/topicService';
 
 import { Button, Form, Segment } from 'semantic-ui-react'
 
-export default function AddTopicForm(props){
+export default function AddTopicForm(handleAddTopic, user){
   const [selectedFile, setSelectedFile] = useState('')
+  const [topics, setTopics] = useState([]);
   const [state, setState] = useState({
+    title: '',
     description: ''
   })
-
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
-  }
-
 
   function handleChange(e){
     setState({
@@ -27,9 +26,41 @@ export default function AddTopicForm(props){
     formData.append('photo', selectedFile)
     formData.append('description', state.description)
     formData.append('title', state.title)
-    props.handleAddTopic(formData)
+    handleAddTopic(formData)
     // Have to submit the form now! We need a function!
   }
+
+  async function handleAddTopic(topic){
+
+    const data = await topicsAPI.create(topic);
+
+    console.log(data, ' data')
+    setTopics([data.topic,  ...topics])
+    
+    setState({
+      title: '',
+      description: ''
+    })
+    
+  };
+
+  function handleFileInput(e){
+    setSelectedFile(e.target.files[0])
+  }
+
+  async function getTopics(){
+    
+    try {
+      const data = await topicsAPI.getAll();
+      setTopics([...data.topics])
+    } catch(err){
+      console.log(err, ' this is the error')
+    }
+  }
+
+  useEffect(() => {
+    getTopics()
+  }, [])
 
 
   return (
@@ -69,6 +100,10 @@ export default function AddTopicForm(props){
                 ADD TOPIC
               </Button>
             </Form>
+            <Segment>
+            <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} user={user} />
+
+            </Segment>
           </Segment>
      
    

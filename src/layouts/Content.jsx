@@ -7,17 +7,11 @@ import * as topicsAPI from '../utils/topicService';
 
 export default function Content({user, handleLogout}){  
 
-  const [topics, setTopics] = useState([]);
-
-  async function handleAddTopic(topic){
-
-    const data = await topicsAPI.create(topic);
-
-    console.log(data, ' data')
-    setTopics([data.topic,  ...topics])    
-  };
 
 
+  
+
+  
 
 
 
@@ -27,7 +21,8 @@ export default function Content({user, handleLogout}){
           {user ?
             <Route exact path={`/${user.username}`}>
               <ProfileDisplay user={user} handleLogout={handleLogout}/>
-              <AddTopicForm handleAddTopic={handleAddTopic}/>
+              <AddTopicForm user={user} />
+              
             </Route>
           :
             null
