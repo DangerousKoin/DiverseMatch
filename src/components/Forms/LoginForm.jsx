@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../System/ErrorMessage'
 import userService from '../../utils/userService';
-import { useHistory, Link } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { useHistory, Link, Redirect } from 'react-router-dom';
+import { Button, Form, Grid, Header, Image, Message, Segment, Modal } from 'semantic-ui-react'
 
 export default function LoginForm(props){
     const [invalidForm, setValidForm] = useState(false);
-    const [error, setError ]          = useState('')
-    const [state, setState]       = useState({
+    const [error, setError ] = useState('');
+    const [state, setState] = useState({
         username: '',
         password: '',
-    })
+    });
 
+    const [open, setOpen] = React.useState(true)
     const history = useHistory();
     
     function handleChange(e){
@@ -19,9 +20,7 @@ export default function LoginForm(props){
         ...state,
         [e.target.name]: e.target.value
       })
-    }
-   
-    
+    };
 
     async function handleSubmit(e){
       e.preventDefault()
@@ -40,7 +39,18 @@ export default function LoginForm(props){
 
     return (
         <>
-          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Modal
+          basic
+          closeIcon
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          trigger={""}
+        >
+
+
+
+<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
             <Image src='https://photocollector.s3-us-west-2.amazonaws.com/site-images/DiverseMatch_logo.png' /> Log-in to your account
@@ -79,6 +89,11 @@ export default function LoginForm(props){
             {error ? <ErrorMessage error={error} /> : null}
             </Grid.Column>
           </Grid>
+
+
+
+        </Modal>
+          
         </>
       );
 }

@@ -12,13 +12,20 @@ export default function Content({user, handleLogout}){
       
        <Grid>
         <Grid.Column style={{ minWidth: 350}}>
-          <Route exact path="/:username">
-            <ProfileDisplay user={user} handleLogout={handleLogout}/>
-            Topic Form
-          </Route>
-          <Route exact path="/">
-            Match Results
-          </Route>
+          {user ?
+          <Route exact path={`/${user.username}`}>
+          <ProfileDisplay user={user} handleLogout={handleLogout}/>
+          Topic Form
+        </Route>
+        :
+        null
+        }
+          
+        <Route exact path="/">
+        Match Results
+        </Route>
+          
+          
         </Grid.Column>
         
       </Grid>

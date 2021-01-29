@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../System/ErrorMessage';
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment, Modal } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import { useHistory } from 'react-router-dom';
 
 
-export default function SignUpPage(props){
-  const [invalidForm, setValidForm] = useState(false)
-  const [error, setError ] = useState('')
-  const [selectedFile, setSelectedFile] = useState('')
+export default function SignupForm(props){
+  const [invalidForm, setValidForm] = useState(false);
+  const [error, setError ] = useState('');
+  const [open, setOpen] = React.useState(true);
+  const [selectedFile, setSelectedFile] = useState('');
   const [state, setState]  = useState({
     username: '',
     password: '',
     passwordConf: '',
   });
+  
 
   const history = useHistory()
   
@@ -70,7 +72,15 @@ export default function SignUpPage(props){
     
     return (
         <>
-        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Modal
+          basic
+          closeIcon
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          trigger={""}
+        >
+<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='teal' textAlign='center'>
                 <Image src='https://photocollector.s3-us-west-2.amazonaws.com/site-images/DiverseMatch_logo.png' /> Sign Up    
@@ -120,26 +130,13 @@ export default function SignUpPage(props){
                 </Form>
             </Grid.Column>
           </Grid>
+
+
+
+
+        </Modal>
+        
         </>
       );   
     
 }
-
-
-{/* <Modal
-      centered={false}
-      open={open}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      trigger={<Button>Show Modal</Button>}
-    >
-      <Modal.Header>Thank you!</Modal.Header>
-      <Modal.Content>
-        <Modal.Description>
-          Your subscription has been confirmed
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button onClick={() => setOpen(false)}>OK</Button>
-      </Modal.Actions>
-    </Modal> */}
