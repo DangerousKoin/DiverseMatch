@@ -7,6 +7,7 @@ const upload = multer();
 router.post('/', upload.single('photo'), topicsCtrl.createTopic);
 router.post('/search', topicsCtrl.search);
 router.get('/', topicsCtrl.index);
+router.delete('/:id', topicsCtrl.deleteTopic);
 
 
 /*---------- Protected Routes ----------*/

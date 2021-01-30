@@ -1,7 +1,11 @@
 import React from 'react';
-import { Card, Icon, Image, Feed } from 'semantic-ui-react'
+import { Card, Icon, Image, Feed, Button } from 'semantic-ui-react'
 
-function TopicCard({topic}) { 
+
+function TopicCard({topic, deleteTopic}) { 
+
+  
+  const clickHandler = () => deleteTopic(topic._id)
 
   return (
     <Card style={{ minWidth: 150}} key={topic._id}>
@@ -15,7 +19,9 @@ function TopicCard({topic}) {
           <strong>{topic.title}</strong>
           <br />
           {topic.description}
-          
+          <Button
+            onClick={clickHandler}
+          >X</Button>
       
       </Card.Content>
     </Card>

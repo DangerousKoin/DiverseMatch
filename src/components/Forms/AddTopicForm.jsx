@@ -41,12 +41,22 @@ export default function AddTopicForm(handleAddTopic, user){
       title: '',
       description: ''
     })
+    getTopics()
     
   };
 
   function handleFileInput(e){
     setSelectedFile(e.target.files[0])
   }
+
+  async function deleteTopic(topicId) {
+    try {
+        const data = await topicsAPI.removeTopic(topicId);
+        getTopics();
+    } catch (err) {
+        console.log(err)
+    }
+}
 
   async function getTopics(){
     
@@ -101,7 +111,7 @@ export default function AddTopicForm(handleAddTopic, user){
               </Button>
             </Form>
             <Segment>
-            <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} user={user} />
+            <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} user={user} deleteTopic={deleteTopic} />
 
             </Segment>
           </Segment>

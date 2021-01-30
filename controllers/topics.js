@@ -6,6 +6,7 @@ const s3 = new S3(); // initialize the construcotr
 module.exports = {
     createTopic,
     search,
+    deleteTopic,
     index
 }
 
@@ -37,6 +38,23 @@ async function search(req, res){
         res.status(200).json({searchResults})
     } catch(err){
 
+    }
+}
+
+async function deleteTopic(req, res){
+    try {
+        
+      
+
+
+        const topic = await Topic.findById(req.params.id);
+        console.log(topic);
+        topic.remove();
+        await topic.save();
+        
+        res.json({data: 'topic removed'})
+    } catch(err){
+        res.json({error: err})
     }
 }
 

@@ -7,14 +7,6 @@ import * as topicsAPI from '../utils/topicService';
 
 export default function Content({user, handleLogout}){  
 
-
-
-  
-
-  
-
-
-
     return (
        <Grid>
         <Grid.Column style={{ minWidth: 350}}>
