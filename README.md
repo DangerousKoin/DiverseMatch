@@ -26,6 +26,9 @@
 <!-- USAGE EXAMPLES -->
 ## Project Link
 https://diverse-match.herokuapp.com/
+Test Account (Signup May Be Broken)
+Username: Test123
+Password: 123456
 
 
 <!-- ROADMAP -->
