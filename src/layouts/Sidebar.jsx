@@ -10,7 +10,7 @@ export default function Sidebar({user}){
             <>
             <Segment>
                 <Grid>
-                    <Grid.Column style={{ width: 250 }}>
+                    <Grid.Column style={{ width: 250}}>
                         <Grid.Row>
                             <Link to="/"><Image style={{ display: 'inline', float: 'left', width: 100 }} src='https://photocollector.s3-us-west-2.amazonaws.com/site-images/DiverseMatch_logo.png' /></Link>
                             {user !== null ?

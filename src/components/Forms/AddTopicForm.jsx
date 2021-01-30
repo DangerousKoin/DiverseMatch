@@ -41,7 +41,7 @@ export default function AddTopicForm(handleAddTopic, user){
       title: '',
       description: ''
     })
-    getTopics()
+    
     
   };
 

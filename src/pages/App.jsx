@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import './App.css';
 import userService from '../utils/userService'
 import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
