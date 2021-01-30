@@ -14,6 +14,5 @@ export default function TopicFeed({topics, isProfile, user, numPhotosCol, delete
                     )
                 })}
         </Card.Group>
-  
     )
 }

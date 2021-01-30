@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { Card  } from 'semantic-ui-react'
-import TopicCard from '../Cards/TopicCard';
+import TopicFeed from '../Feeds/TopicFeed';
 import * as topicService from '../../utils/topicService';
 
 
@@ -46,13 +45,7 @@ export default function Search(){
         </Button>
       </Form>
 
-      <Card.Group itemsPerRow={1} stackable>
-        {results.map((topic) => {
-          return ( 
-                  <TopicCard topic={topic} key={topic._id} />
-              )
-        })}
-      </Card.Group>
+      <TopicFeed topics={results} isProfile={false} numPhotosCol={1} />
 
   </>
   
