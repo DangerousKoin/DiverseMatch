@@ -28,7 +28,7 @@
 https://diverse-match.herokuapp.com/
 <br />
 Test Account (Signup May Be Broken)
-* Username: Test123
+* Username: test123
 * Password: 123456
 
 
