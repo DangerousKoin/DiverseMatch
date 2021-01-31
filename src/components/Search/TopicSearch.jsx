@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import TopicFeed from '../Feeds/TopicFeed';
-import * as topicService from '../../utils/topicService';
+import * as topicsAPI from '../../utils/topicService';
 
 
 export default function Search(){
   const [state, setState] = useState({});
-  const [results, setResults] = useState([]);
+  const [topics, setTopics] = useState([]);
+
 
   
 
@@ -17,13 +18,17 @@ export default function Search(){
     })
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    const data = topicService.search(state.title);
-    const formData = new FormData()
-    formData.append('title', state.title)
-    setResults(() => [...data.results])
+  async function handleSubmit(){
     
+    try {
+      const data = await topicsAPI.search(state.title);
+      const formData = new FormData()
+      formData.append('title', state.title)
+      setTopics([...data.topics])
+      
+    } catch(err){
+      console.log(err, ' this is the error')
+    }
   }
   
   return (
@@ -45,7 +50,7 @@ export default function Search(){
         </Button>
       </Form>
 
-      <TopicFeed topics={results} isProfile={false} numPhotosCol={1} />
+      <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} />
 
   </>
   

@@ -6,13 +6,16 @@ import TopicCard from '../Cards/TopicCard';
 export default function TopicFeed({topics, isProfile, user, numPhotosCol, deleteTopic}){
 
     return (
+        
         <Card.Group itemsPerRow={numPhotosCol} stackable>
            
                 {topics.map((topic) => {
+                    console.log("topic ", topic)
                 return ( 
                         <TopicCard topic={topic} key={topic._id} isProfile={isProfile} user={user} deleteTopic={deleteTopic} />
                     )
                 })}
         </Card.Group>
     )
+    
 }

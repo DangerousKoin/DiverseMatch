@@ -33,9 +33,8 @@ function createTopic(req, res){
 
 async function search(req, res){
     try {
-        console.log(req.body.keyword)
-        const searchResults = await Topic.find({title: req.body.keyword});        
-        res.status(200).json({searchResults})
+        const topics = await Topic.find({title: req.params.keyword});
+        res.status(200).json({topics})
     } catch(err){
 
     }
@@ -43,15 +42,9 @@ async function search(req, res){
 
 async function deleteTopic(req, res){
     try {
-        
-      
-
-
         const topic = await Topic.findById(req.params.id);
-        console.log(topic);
         topic.remove();
         await topic.save();
-        
         res.json({data: 'topic removed'})
     } catch(err){
         res.json({error: err})

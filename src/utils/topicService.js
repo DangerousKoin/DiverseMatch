@@ -12,6 +12,15 @@ export function create(topic){
     }).then(res => res.json())
 }
 
+export function search(keyword){
+  return fetch(`${BASE_URL}/search/${keyword}`, {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+  }).then(res => res.json())
+}
+
 export function removeTopic(id){
   return fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',
@@ -19,16 +28,6 @@ export function removeTopic(id){
           'Authorization': 'Bearer ' + tokenService.getToken()
         }
   }).then(res => res.json());
-}
-
-export function search(keyword){
-  return fetch(BASE_URL + 'search', {
-    method: 'POST',
-    body: keyword,
-    headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
-      }
-  }).then(res => res.json())
 }
 
 export function getAll() {

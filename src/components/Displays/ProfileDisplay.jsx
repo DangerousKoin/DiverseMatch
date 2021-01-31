@@ -12,8 +12,8 @@ export default function ProfileDisplay({user, handleLogout}) {
         <Image id="profImg" src={`${user.avatar ? user.avatar : "https://react.semantic-ui.com/images/wireframe/round-image.png"} `} />
       </Grid.Column>
       <Grid.Column>
-           <h3>{user.username}</h3>
-           <Link to="/"><Button onClick={handleLogout}>Logout</Button></Link>
+        <h3>{user.username}</h3>
+        <Link to="/"><Button onClick={handleLogout}>Logout</Button></Link>
       </Grid.Column>
    
   </Grid>

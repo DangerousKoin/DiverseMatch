@@ -1,18 +1,37 @@
 
+
 #logoImg {
   display: inline;
   float: left;
-  width: 9rem;
+  height: 6rem;
 }
 
 #avatarImg {
   display: inline;
-  float: right;
-  border: 5px;
+  border: 5px solid #2BC9AF;
   border-radius: 50%;
   object-fit: cover;
-  height: 6rem;
-  width: 6rem;
+  height: 6.25rem;
+  width: 6.25rem;
+}
+#matchNumCont {
+  position: absolute;
+  top: 4.5rem;
+  left: 18.5rem;
+  border: 0.25rem solid #997ADB;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  background-color: #FF7276;
+}
+#matchNum {
+  font-size: 2rem;
+  margin: 0.3rem auto;
+  color: teal;
+}
+
+#searchBox {
+  margin-bottom: 2rem;
 }
   
   /* @media (prefers-reduced-motion: no-preference) {
