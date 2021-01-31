@@ -12,9 +12,8 @@ export default function SignupForm(props){
   const [selectedFile, setSelectedFile] = useState('');
   const [state, setState]  = useState({
     username: '',
-    email: 'default@diversematch.com',
     password: '',
-    passwordConf: '',
+    passwordConf: ''
   });
   
 
@@ -23,7 +22,8 @@ export default function SignupForm(props){
   function handleChange(e){
     setState({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      email: state.username + '@diversematch.com'
     })
   }
 
@@ -95,6 +95,7 @@ export default function SignupForm(props){
                       onChange={handleChange}
                       required
                     />
+                    
                     <Form.Input             
                       name="password"
                       type="password"
@@ -119,6 +120,7 @@ export default function SignupForm(props){
                         onChange={handleFileInput}
                       />      
                     </Form.Field>
+                    
                     <Button
                       type="submit"
                       className="btn"
