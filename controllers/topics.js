@@ -40,7 +40,7 @@ async function search(req, res){
             let topicTitle = topic.title.toLowerCase();
             if (topicTitle.includes(keyword)) {
                 topics.push(topic);
-                topics.sort();
+                topics.sort().reverse();
             }
         })  
         
