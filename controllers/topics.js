@@ -33,7 +33,19 @@ function createTopic(req, res){
 
 async function search(req, res){
     try {
-        const topics = await Topic.find({title: req.params.keyword});
+        const searchList = await Topic.find({});
+        const keyword = req.params.keyword.toLowerCase();
+        let topics = [];
+        searchList.forEach(function(topic) {
+            let topicTitle = topic.title.toLowerCase();
+            if (topicTitle.includes(keyword)) {
+                topics.push(topic);
+                topics.sort();
+            }
+        })  
+        
+      
+        
         res.status(200).json({topics})
     } catch(err){
 
