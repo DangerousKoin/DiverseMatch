@@ -58,6 +58,7 @@ const photoAlbumSchema = new mongoose.Schema([
 
 const userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
+  email: {type: String, unique: false},
   password: String,
   contactList: [contactListSchema],  // ways to talk to matches, kept private
   matchRequests: [matchRequestsSchema], // user likes another user

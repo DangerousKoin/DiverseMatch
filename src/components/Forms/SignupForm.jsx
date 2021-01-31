@@ -12,6 +12,7 @@ export default function SignupForm(props){
   const [selectedFile, setSelectedFile] = useState('');
   const [state, setState]  = useState({
     username: '',
+    email: 'default@diversematch.com',
     password: '',
     passwordConf: '',
   });
