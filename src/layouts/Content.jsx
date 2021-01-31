@@ -8,7 +8,7 @@ export default function Content({user, handleLogout}){
 
     return (
        <Grid>
-        <Grid.Column style={{ minWidth: 350, width: '100%'}}>
+        <Grid.Column>
           {user ?
             <Route exact path={`/${user.username}`}>
               <ProfileDisplay user={user} handleLogout={handleLogout}/>

@@ -1,22 +1,11 @@
-.App {
-    color: #a1176d;
-    margin: 0 auto;
-    text-align: center;
+#profImg {
+    border: 0.5rem solid #00ff77;
+    border-radius: 50%;
+    object-fit: cover;
+    
+    height: 9rem;
+    width: 9rem;
   }
-#container {
-  text-align: center;
-  margin: 0 auto;
-  display: inline;
-  white-space: nowrap;
-}
-#sidebar {
-  width: 20rem;
-}
-#content {
-  width: 40rem;
-
-}
-
   
   /* @media (prefers-reduced-motion: no-preference) {
     .App-logo {

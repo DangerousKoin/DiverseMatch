@@ -1,22 +1,19 @@
-.App {
-    color: #a1176d;
-    margin: 0 auto;
-    text-align: center;
-  }
-#container {
-  text-align: center;
-  margin: 0 auto;
+
+#logoImg {
   display: inline;
-  white-space: nowrap;
-}
-#sidebar {
-  width: 20rem;
-}
-#content {
-  width: 40rem;
-
+  float: left;
+  width: 9rem;
 }
 
+#avatarImg {
+  display: inline;
+  float: right;
+  border: 5px;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 6rem;
+  width: 6rem;
+}
   
   /* @media (prefers-reduced-motion: no-preference) {
     .App-logo {

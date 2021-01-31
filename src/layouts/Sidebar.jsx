@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import { Header, Segment, Image, Icon, Grid } from 'semantic-ui-react';
 import TopicSearch from '../components/Search/TopicSearch';
-
+import '../styles/Sidebar.css';
 
 export default function Sidebar({user}){
     return (
@@ -10,16 +10,16 @@ export default function Sidebar({user}){
             <>
             <Segment>
                 <Grid>
-                    <Grid.Column style={{ width: 250}}>
-                        <Grid.Row>
-                            <Link to="/"><Image style={{ display: 'inline', float: 'left', width: 100 }} src='https://photocollector.s3-us-west-2.amazonaws.com/site-images/DiverseMatch_logo.png' /></Link>
+                    <Grid.Column>
+                        <Grid.Row id="navbox">
+                            <Link to="/"><Image id="logoImg" src='https://photocollector.s3-us-west-2.amazonaws.com/site-images/DiverseMatch_logo.png' /></Link>
                             {user !== null ?
                             <Link to={`/${user.username}`}>
-                                <Image style={{ display: 'inline', float: 'right', width: 80, height: 80 }} src={user.avatar ? user.avatar : "https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar></Image>
+                                <Image id="avatarImg" src={user.avatar ? user.avatar : "https://react.semantic-ui.com/images/wireframe/square-image.png"}></Image>
                             </Link>
                             :
                             <Link to="/">
-                            <Image style={{ display: 'inline', float: 'right', width: 80, height: 80 }} src="https://react.semantic-ui.com/images/wireframe/square-image.png" avatar></Image>
+                            <Image id="avatarImg" src="https://react.semantic-ui.com/images/wireframe/square-image.png"></Image>
                             </Link>
                             }
                             

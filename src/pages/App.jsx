@@ -31,21 +31,21 @@ function App() {
             <Redirect to="/login" />
           </Route>
         }
-        <Grid>
-          <Grid.Column style={{ width: 250 }}>
+        <Grid id="container" columns={2}>
+          <Grid.Column id="sidebar">
             <Sidebar user={user} />
           </Grid.Column>
-          <Grid.Column style={{ width: 350 }}>
+          <Grid.Column id="content">
             <Content user={user} handleLogout={handleLogout} />
           </Grid.Column>
         </Grid>
       
-      <Route exact path="/login">
-        <LoginForm handleSignUpOrLogin={handleSignUpOrLogin} />
-      </Route>
-      <Route exact path="/signup">
-        <SignupForm handleSignUpOrLogin={handleSignUpOrLogin} />
-      </Route>
+        <Route exact path="/login">
+          <LoginForm handleSignUpOrLogin={handleSignUpOrLogin} />
+        </Route>
+        <Route exact path="/signup">
+          <SignupForm handleSignUpOrLogin={handleSignUpOrLogin} />
+        </Route>
       </Route>
     </div>
   );
