@@ -121,11 +121,11 @@ export default function AddTopicForm(handleAddTopic, user){
             </Segment>
             <br />
             
-             <Grid>
-               <Grid.Column style={{ width: '90%'}}>
+            <Grid>
+               <Grid.Column style={{ width: '90%', margin: '0 auto'}}>
                <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} user={user} deleteTopic={deleteTopic} />
                </Grid.Column>
-               </Grid> 
+            </Grid> 
 
             
           
