@@ -40,7 +40,7 @@ async function search(req, res){
             let topicTitle = topic.title.toLowerCase();
             if (topicTitle.includes(keyword)) {
                 topics.push(topic);
-                topics.sort().reverse();
+                topics.sort();
             }
         })  
         
@@ -65,12 +65,16 @@ async function deleteTopic(req, res){
 
 async function index(req, res){
     try {
-        // this populates the user when you find the topics
-        // so you'll have access to the users information 
-        // when you fetch the topics        
-        const topics = await Topic.find({}).populate('user').exec() 
-        // userSchema.set('toObject') gets invoked, to delete the password
-        // when we populate the user so we don't have to worry about sending over the password!
+        const searchList = await Topic.find({});
+        let topics = [];
+        searchList.forEach(function(topic) {
+            if (topic.user == req.user._id) {
+                topics.push(topic);
+                topics.sort();
+            }
+        })
+        
+        
         res.status(200).json({topics})
     } catch(err){
 
