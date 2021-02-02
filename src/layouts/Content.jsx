@@ -9,8 +9,8 @@ export default function Content({user, handleLogout}){
     return (
       <>
       <Segment id="boxCont">
-        <Grid>
-          <Grid.Column>
+        <Grid >
+          <Grid.Column >
             {user ?
               <Route exact path={`/${user.username}`}>
                 <ProfileDisplay user={user} handleLogout={handleLogout}/>

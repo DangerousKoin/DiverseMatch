@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Segment } from 'semantic-ui-react';
+import {Redirect, Link} from 'react-router-dom';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
 
@@ -12,44 +13,67 @@ export default function Search(){
   
 
   function handleChange(e){
+    
     setState({
       ...state,
       [e.target.name]: e.target.value
     })
   }
 
-  async function handleSubmit(){
-    
+  async function handleSubmit(e){
+    e.preventDefault()
     try {
-      const data = await topicsAPI.search(state.title);
-      const formData = new FormData()
-      formData.append('title', state.title)
-      setTopics([...data.topics])
+      if (state.title === '') {getTopics()} else {
+        const data = await topicsAPI.search(state.title);
+        const formData = new FormData();
+        formData.append('title', state.title);
+        setTopics([...data.topics]);
+      }
       
     } catch(err){
-      console.log(err, ' this is the error')
+      console.log(err, ' this is the error');
+    }
+  }
+  
+  async function getTopics(){
+    
+    try {
+      const data = await topicsAPI.getAll();
+      setTopics([...data.topics]);
+    } catch(err){
+      console.log(err, ' this is the error');
     }
   }
   
   return (
    <>
-        
-      <Form  autoComplete="off" onSubmit={handleSubmit}>
-        <Form.Input
-            className="search-input"
-            name="title"
-            placeholder="Search Topics"
-            onChange={handleChange}
-            required
-        />
-        <Button
-          type="submit"
-          className="btn"
-        >
-          Search
-        </Button>
-      </Form>
+             <Form  autoComplete="off" onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
 
+        <Grid>
+          <Grid.Row style={{ textAlign: 'left' }}>
+            <Grid.Column style={{ width: '60%', paddingRight: 0 }}>
+              <Form.Input
+                  className="search-input"
+                  name="title"
+                  placeholder="Search Topics"
+                  onChange={handleChange}
+                  
+                  
+              />
+            </Grid.Column>
+            <Grid.Column >
+              <Button type="submit" className="btn">
+              Search
+              </Button>
+
+          </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        </Form>
+
+        
+        
+      
       <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} />
 
   </>

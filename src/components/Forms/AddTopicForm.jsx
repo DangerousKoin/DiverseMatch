@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
 
-import { Button, Form, Segment } from 'semantic-ui-react'
+import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 
 export default function AddTopicForm(handleAddTopic, user){
   const [selectedFile, setSelectedFile] = useState('')
@@ -34,7 +34,7 @@ export default function AddTopicForm(handleAddTopic, user){
 
     const data = await topicsAPI.create(topic);
 
-    console.log(data, ' data')
+
     setTopics([data.topic,  ...topics])
     
     setState({
@@ -74,9 +74,9 @@ export default function AddTopicForm(handleAddTopic, user){
 
 
   return (
-    
+    <>
   
-        <Segment>
+        <Segment id='elementCont'>
         
             <Form  autoComplete="off" onSubmit={handleSubmit}>
 
@@ -95,27 +95,38 @@ export default function AddTopicForm(handleAddTopic, user){
                   placeholder="topic description"
                   onChange={handleChange}
                   required
-              />   
+              />
+        <Grid>
+          <Grid.Row style={{ textAlign: 'left' }}>
+            <Grid.Column style={{ width: '65%', paddingRight: 0 }}>   
               <Form.Input
                 className="form-control"
                 type="file"
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
-              />   
+              />
+              </Grid.Column>
+            <Grid.Column >   
               <Button
                 type="submit"
                 className="btn"
               >
-                ADD TOPIC
+                CREATE TOPIC
               </Button>
+              </Grid.Column>
+          </Grid.Row>
+        </Grid>
             </Form>
-            <Segment>
+            </Segment>
+            <br />
+            
+              
             <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} user={user} deleteTopic={deleteTopic} />
 
-            </Segment>
-          </Segment>
+            
+          
      
-   
+   </>
   ); 
 }

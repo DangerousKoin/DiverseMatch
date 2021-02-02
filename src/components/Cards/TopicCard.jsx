@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Icon, Image, Feed, Button } from 'semantic-ui-react'
+import '../../styles/TopicCard.css';
+import { Card, Icon, Image, Feed, Button, Grid } from 'semantic-ui-react'
 
 
 function TopicCard({topic, deleteTopic}) { 
@@ -8,10 +9,13 @@ function TopicCard({topic, deleteTopic}) {
   const clickHandler = () => deleteTopic(topic._id)
 
   return (
-    <Card style={{ minWidth: 150}} key={topic._id}>
-          <Card.Content style={{ fontSize: 'small', display: 'inline', whiteSpace: 'nowrap', textAlign: 'center', padding: 0}}>
+    <Grid>
+    <Grid.Row style={{ textAlign: 'left' }}>
+      <Grid.Column style={{ width: '60%', paddingRight: 0 }}>
+    <Card id='topicCard' key={topic._id}>
+          <Card.Content id='topicContent'>
               <Image
-                  style={{ padding: 2, border: 2, borderRadius: 5, backgroundColor: 'green' }}
+                  id='topicImg'
                   floated='left'
                   size='tiny'
                   src={topic.icon ? topic.icon : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
@@ -19,12 +23,18 @@ function TopicCard({topic, deleteTopic}) {
           <strong>{topic.title}</strong>
           <br />
           {topic.description}
-          <Button
-            onClick={clickHandler}
-          >X</Button>
+          
       
       </Card.Content>
     </Card>
+    </Grid.Column>
+            <Grid.Column >
+    <Button
+            onClick={clickHandler}
+          >X</Button>
+          </Grid.Column>
+          </Grid.Row>
+        </Grid>
   );
 }
 
