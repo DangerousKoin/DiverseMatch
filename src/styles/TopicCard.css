@@ -1,5 +1,6 @@
 #topicCard {
-    width: 30rem;
+    width: 23rem;
+    color:  #5b4883;
 }
 
 #topicImg {
@@ -7,12 +8,13 @@
     border-radius: 1rem;
     object-fit: cover;
     
-    height: 6rem;
-    width: 6rem;
+    height: 3rem;
+    width: 3rem;
     margin: auto auto;
   }
 
   #topicContent {
+    
     font-size: small;
     display: inline;
     white-space: nowrap;

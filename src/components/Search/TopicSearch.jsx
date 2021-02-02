@@ -73,8 +73,11 @@ export default function Search(){
 
         
         
-      
-      <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} />
+      <Grid>
+        <Grid.Column style={{ width: '90%'}}>
+        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} />
+        </Grid.Column>
+      </Grid>
 
   </>
   
