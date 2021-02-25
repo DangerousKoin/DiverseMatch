@@ -44,6 +44,7 @@ export default function Search(){
     }
   }
   
+  
   async function getTopics(){
     
     try {
