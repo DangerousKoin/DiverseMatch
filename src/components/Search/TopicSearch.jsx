@@ -43,7 +43,7 @@ export default function Search(){
         console.log(err)
     }
   }
-  
+
   
   async function getTopics(){
     
@@ -81,6 +81,7 @@ export default function Search(){
         </Grid>
         </Form>
 
+        
         
         
       <Grid>

@@ -43,6 +43,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
         null
       }
       
+      
       <Grid.Column >
         <Button onClick={addIntHandler}>
           +
