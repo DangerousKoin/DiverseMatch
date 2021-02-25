@@ -34,6 +34,15 @@ export default function Search(){
       console.log(err, ' this is the error');
     }
   }
+
+  async function addInterest(topicId) {
+    try {
+        const data = await topicsAPI.addInterest(topicId);
+        getTopics();
+    } catch (err) {
+        console.log(err)
+    }
+  }
   
   async function getTopics(){
     
@@ -75,7 +84,7 @@ export default function Search(){
         
       <Grid>
         <Grid.Column style={{ width: '90%'}}>
-        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} />
+        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} addInterest={addInterest} removeInterest={removeInterest} />
         </Grid.Column>
       </Grid>
 
