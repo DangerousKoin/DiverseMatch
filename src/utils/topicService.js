@@ -30,6 +30,7 @@ export function removeTopic(id){
   }).then(res => res.json());
 }
 
+
 export function getAll() {
     return fetch(BASE_URL, {
       headers: {

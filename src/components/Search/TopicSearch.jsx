@@ -3,6 +3,8 @@ import { Button, Form, Grid, Segment } from 'semantic-ui-react';
 import {Redirect, Link} from 'react-router-dom';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
+import * as userAPI from '../../utils/userService';
+
 
 
 export default function Search(){
@@ -37,7 +39,16 @@ export default function Search(){
 
   async function addInterest(topicId) {
     try {
-        const data = await topicsAPI.addInterest(topicId);
+        const data = await userAPI.addInterest(topicId);
+        getTopics();
+    } catch (err) {
+        console.log(err)
+    }
+  }
+
+  async function removeInterest(topicId) {
+    try {
+        const data = await userAPI.removeInterest(topicId);
         getTopics();
     } catch (err) {
         console.log(err)
