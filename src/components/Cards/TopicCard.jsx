@@ -43,7 +43,6 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
         null
       }
       
-      
       <Grid.Column style={{ margin: '1rem' }}>
         <Button onClick={addIntHandler}>
           +
