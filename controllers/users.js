@@ -10,7 +10,9 @@ const s3 = new S3(); // initialize the construcotr
 module.exports = {
   signup,
   login,
-  profile
+  profile,
+  addInterest,
+  addDislike
 };
 
 function signup(req, res) {
@@ -70,6 +72,22 @@ async function profile(req, res){
     const user = await User.findOne({username: req.params.username})
     const topics = await Topic.find({user: user._id}); 
     res.status(200).json({topics: topics, user: user})
+  } catch(err){
+    return res.status(401).json(err)
+  }
+}
+
+async function addInterest(req, res){
+  try {
+    console.log("interest to add", req.body)
+  } catch(err){
+    return res.status(401).json(err)
+  }
+}
+
+async function addDislike(req, res){
+  try {
+    console.log(req.body)
   } catch(err){
     return res.status(401).json(err)
   }

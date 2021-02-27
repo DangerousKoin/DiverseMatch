@@ -23,8 +23,6 @@ function createTopic(req, res){
             const populatedUserTopic = await topic.populate('user').execPopulate();
             res.status(201).json({topic: populatedUserTopic})
         })
-
-
     } catch(err){
         console.log(err)
         res.json({data: err})
@@ -42,13 +40,11 @@ async function search(req, res){
                 topics.push(topic);
                 topics.sort();
             }
-        })  
-        
-      
-        
+        })
         res.status(200).json({topics})
     } catch(err){
-
+        console.log(err)
+        res.json({data: err})
     }
 }
 

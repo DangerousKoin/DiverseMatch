@@ -34,7 +34,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
         </Grid.Column>
 
       {isProfile ?
-        <Grid.Column >
+        <Grid.Column style={{ margin: '1rem' }}>
           <Button onClick={delTopicHandler}>
             X
           </Button>
@@ -44,13 +44,13 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
       }
       
       
-      <Grid.Column >
+      <Grid.Column style={{ margin: '1rem' }}>
         <Button onClick={addIntHandler}>
           +
         </Button>
       </Grid.Column>
 
-      <Grid.Column >
+      <Grid.Column style={{ margin: '1rem' }}>
         <Button onClick={remIntHandler}>
           -
         </Button>

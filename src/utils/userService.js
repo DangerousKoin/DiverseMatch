@@ -54,7 +54,8 @@ function getProfile(username){
 }
 
 export function addInterest(id){
-  return fetch(`${BASE_URL}/${id}`, {
+  
+  return fetch(`${BASE_URL}/interest/${id}`, {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
@@ -62,9 +63,9 @@ export function addInterest(id){
   }).then(res => res.json());
 }
 
-export function removeInterest(id){
-  return fetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE',
+export function addDislike(id){
+  return fetch(`${BASE_URL}/dislike/${id}`, {
+    method: 'POST',
     headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
       }

@@ -46,9 +46,9 @@ export default function Search(){
     }
   }
 
-  async function removeInterest(topicId) {
+  async function addDislike(topicId) {
     try {
-        const data = await userAPI.removeInterest(topicId);
+        const data = await userAPI.addDislike(topicId);
         getTopics();
     } catch (err) {
         console.log(err)
@@ -97,7 +97,7 @@ export default function Search(){
         
       <Grid>
         <Grid.Column style={{ width: '90%'}}>
-        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} addInterest={addInterest} removeInterest={removeInterest} />
+        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} addInterest={addInterest} addDislike={addDislike} />
         </Grid.Column>
       </Grid>
 
