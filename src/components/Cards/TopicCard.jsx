@@ -15,7 +15,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
     <>
     <Grid>
       <Grid.Row style={{ textAlign: 'left' }}>
-        <Grid.Column style={{ width: '17rem', paddingRight: '0' }}>
+        <Grid.Column style={{ width: '16rem', padding: '0', margin: '0 0 0 1rem' }}>
           <Card id='topicCard' key={topic._id}>
             <Card.Content id='topicContent'>
                 <Image
@@ -41,7 +41,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
         </Grid.Column>
       :
       <>
-      <Grid.Column style={{ width: '3rem', margin: '0 0 0 10px', padding: '0' }}>
+      <Grid.Column style={{ width: 'auto', margin: '0 0.75rem', padding: '0' }}>
         <Grid.Row>
           <Button onClick={addIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
           +

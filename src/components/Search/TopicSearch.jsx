@@ -93,7 +93,7 @@ export default function Search(){
         </Form>
 
       <Grid>
-        <Grid.Column style={{ width: '90%'}}>
+        <Grid.Column >
         <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} addInterest={addInterest} addDislike={addDislike} />
         </Grid.Column>
       </Grid>
