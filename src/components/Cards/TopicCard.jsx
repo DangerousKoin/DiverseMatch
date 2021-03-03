@@ -15,7 +15,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
     <>
     <Grid>
       <Grid.Row style={{ textAlign: 'left' }}>
-        <Grid.Column style={{ width: '60%', paddingRight: 0 }}>
+        <Grid.Column style={{ width: '17rem', paddingRight: '0' }}>
           <Card id='topicCard' key={topic._id}>
             <Card.Content id='topicContent'>
                 <Image
@@ -31,7 +31,7 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
         
             </Card.Content>
           </Card>
-        </Grid.Column>
+        </Grid.Column >
 
       {isProfile ?
         <Grid.Column style={{ margin: '1rem' }}>
@@ -40,20 +40,23 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
           </Button>
         </Grid.Column>
       :
-        null
+      <>
+      <Grid.Column style={{ width: '3rem', margin: '0 0 0 10px', padding: '0' }}>
+        <Grid.Row>
+          <Button onClick={addIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+          +
+          </Button>
+        </Grid.Row>
+        <Grid.Row>
+          <Button onClick={remIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+          -
+          </Button>
+        </Grid.Row>
+    </Grid.Column>
+    </>
       }
       
-      <Grid.Column style={{ margin: '1rem' }}>
-        <Button onClick={addIntHandler}>
-          +
-        </Button>
-      </Grid.Column>
-
-      <Grid.Column style={{ margin: '1rem' }}>
-        <Button onClick={remIntHandler}>
-          -
-        </Button>
-      </Grid.Column>
+      
 
     </Grid.Row>
   </Grid>
