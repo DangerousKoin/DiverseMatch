@@ -20,3 +20,20 @@ export function addDislike(id){
       }
   }).then(res => res.json());
 }
+
+export function getAllInterests() {
+  return fetch(BASE_URL, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+  .then(res => res.json());
+}
+
+export function getAllDislikes() {
+  return fetch(BASE_URL, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+}

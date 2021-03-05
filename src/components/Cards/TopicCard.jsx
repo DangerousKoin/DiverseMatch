@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/TopicCard.css';
 import { Card, Icon, Image, Feed, Button, Grid } from 'semantic-ui-react'
+import * as profilesAPI from '../../utils/profileService';
 
 
-function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInterest}) { 
+function TopicCard({topic, isProfile, user, deleteTopic}) { 
 
+  const [interests, setInterests] = useState([]);
+  const [dislikes, setDislikes] = useState([]);
   
   const delTopicHandler = () => deleteTopic(topic._id)
-  const addIntHandler = () => addInterest(topic._id)
-  const remIntHandler = () => removeInterest(topic._id)
-  
+
+  const topicId = topic._id;
+
+  async function addInterest() {
+    try {
+        const data = await profilesAPI.addInterest(topicId);
+        setInterests([...data.interests]);
+    } catch (err) {
+        console.log(err)
+    }
+  }
+
+  async function addDislike() {
+    try {
+        const data = await profilesAPI.addDislike(topicId);
+        setDislikes([...data.dislikes]);
+    } catch (err) {
+        console.log(err)
+    }
+  }
 
   return (
     <>
@@ -43,12 +63,12 @@ function TopicCard({topic, isProfile, user, deleteTopic, addInterest, removeInte
       <>
       <Grid.Column style={{ width: 'auto', margin: '0 0.75rem', padding: '0' }}>
         <Grid.Row>
-          <Button onClick={addIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+          <Button onClick={addInterest} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
           +
           </Button>
         </Grid.Row>
         <Grid.Row>
-          <Button onClick={remIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+          <Button onClick={addDislike} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
           -
           </Button>
         </Grid.Row>

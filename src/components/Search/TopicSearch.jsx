@@ -10,6 +10,8 @@ import * as profilesAPI from '../../utils/profileService';
 export default function Search(){
   const [state, setState] = useState({});
   const [topics, setTopics] = useState([]);
+  const [interests, setInterests] = useState([]);
+  const [dislikes, setDislikes] = useState([]);
 
 
   
@@ -37,23 +39,7 @@ export default function Search(){
     }
   }
 
-  async function addInterest(topicId) {
-    try {
-        const data = await profilesAPI.addInterest(topicId);
-        getTopics();
-    } catch (err) {
-        console.log(err)
-    }
-  }
 
-  async function addDislike(topicId) {
-    try {
-        const data = await profilesAPI.addDislike(topicId);
-        getTopics();
-    } catch (err) {
-        console.log(err)
-    }
-  }
 
   
   async function getTopics(){
@@ -65,10 +51,30 @@ export default function Search(){
       console.log(err, ' this is the error');
     }
   }
+
+  async function getInterests(){
+    
+    try {
+      const data = await profilesAPI.getAllInterests();
+      setInterests([...data.interests]);
+    } catch(err){
+      console.log(err, ' this is the error');
+    }
+  }
+
+  async function getDislikes(){
+    
+    try {
+      const data = await profilesAPI.getAllDislikes();
+      setDislikes([...data.dislikes]);
+    } catch(err){
+      console.log(err, ' this is the error');
+    }
+  }
   
   return (
-   <>
-             <Form  autoComplete="off" onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+  <>
+      <Form  autoComplete="off" onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
 
         <Grid>
           <Grid.Row style={{ textAlign: 'left' }}>
@@ -94,7 +100,7 @@ export default function Search(){
 
       <Grid>
         <Grid.Column >
-        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1} addInterest={addInterest} addDislike={addDislike} />
+        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1}  />
         </Grid.Column>
       </Grid>
 

@@ -9,18 +9,21 @@ module.exports = {
 }
 
 
-async function addInterest(req, res){
-    try {
-        console.log("interest to add", req.body)
-    } catch(err){
-        return res.status(401).json(err)
-    }
-}
-  
+
 async function addDislike(req, res){
     try {
         console.log(req.body)
     } catch(err){
         return res.status(401).json(err)
+    }
+}
+
+async function addInterest(req, res){
+    try {
+        const topic = await Topic.findById(req.params.id);
+        req.user.interests.push(topic);
+        res.json({data: 'interest added'})
+    } catch(err){
+        res.json({error: err})
     }
 }
