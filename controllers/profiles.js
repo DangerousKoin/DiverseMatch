@@ -1,4 +1,5 @@
 const Topic = require('../models/topic');
+const User = require('../models/user');
 const { v4: uuidv4 } = require('uuid');
 const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3(); // initialize the construcotr
@@ -8,7 +9,17 @@ module.exports = {
     addDislike
 }
 
-
+async function addInterest(req, res){
+    try {
+        const topic = await Topic.findById(req.params.id);
+        const user = await User.findById(req.user._id);
+        user.interests.push(topic);
+        user.save();
+        res.json({data: 'interest added'})
+    } catch(err){
+        res.json({error: err})
+    }
+}
 
 async function addDislike(req, res){
     try {
@@ -18,12 +29,3 @@ async function addDislike(req, res){
     }
 }
 
-async function addInterest(req, res){
-    try {
-        const topic = await Topic.findById(req.params.id);
-        req.user.interests.push(topic);
-        res.json({data: 'interest added'})
-    } catch(err){
-        res.json({error: err})
-    }
-}
