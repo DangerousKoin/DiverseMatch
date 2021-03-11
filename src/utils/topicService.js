@@ -31,11 +31,20 @@ export function removeTopic(id){
 }
 
 
-export function getAll() {
-    return fetch(BASE_URL, {
+export function getAllTopics() {
+    return fetch(`${BASE_URL}/all`, {
       headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
       }
     })
     .then(res => res.json());
+}
+
+export function getUserTopics() {
+  return fetch(`${BASE_URL}/user`, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+  .then(res => res.json());
 }

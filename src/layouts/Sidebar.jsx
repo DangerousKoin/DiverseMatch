@@ -1,10 +1,45 @@
-import React from 'react';
+import {React, useState} from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import { Header, Segment, Image, Icon, Grid } from 'semantic-ui-react';
 import TopicSearch from '../components/Search/TopicSearch';
+import CriteriaDisplay from '../components/Displays/CriteriaDisplay';
+import * as profilesAPI from '../utils/profileService';
 import '../styles/Sidebar.css';
 
 export default function Sidebar({user}){
+
+    const [interests, setInterests] = useState([profilesAPI.getAllInterests()]);
+    const [dislikes, setDislikes] = useState([profilesAPI.getAllDislikes()]);
+
+
+
+ 
+    
+    
+  
+
+    async function getInterests(){
+    
+        try {
+          const data = await profilesAPI.getAllInterests();
+          setInterests([...data.interests]);
+        } catch(err){
+          console.log(err, ' this is the error');
+        }
+      }
+    
+      async function getDislikes(){
+        
+        try {
+          const data = await profilesAPI.getAllDislikes();
+          setDislikes([...data.dislikes]);
+        } catch(err){
+          console.log(err, ' this is the error');
+        }
+      }
+
+      
+
     return (
          
             <>
@@ -28,8 +63,13 @@ export default function Sidebar({user}){
                 </Grid>
                 <Segment id="elementCont">
                     <Grid>
-                        <Grid.Column id="searchBox">
-                            <TopicSearch />
+                        <Grid.Column>
+                            <Grid.Row>
+                                <CriteriaDisplay user={user} interests={interests} dislikes={dislikes} />
+                            </Grid.Row>
+                            <Grid.Row id="searchBox">
+                                <TopicSearch />
+                            </Grid.Row>
                         </Grid.Column>
                     </Grid>
                 </Segment>

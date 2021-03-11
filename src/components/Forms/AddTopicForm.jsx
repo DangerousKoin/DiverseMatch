@@ -61,7 +61,7 @@ export default function AddTopicForm(handleAddTopic, user){
   async function getTopics(){
     
     try {
-      const data = await topicsAPI.getAll();
+      const data = await topicsAPI.getUserTopics();
       setTopics([...data.topics])
     } catch(err){
       console.log(err, ' this is the error')

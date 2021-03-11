@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/profiles/'
+const BASE_URL = '/api/profiles'
 
 export function addInterest(id){
   
@@ -22,7 +22,7 @@ export function addDislike(id){
 }
 
 export function getAllInterests() {
-  return fetch(BASE_URL, {
+  return fetch(`${BASE_URL}/interests`, {
     headers: {
       'Authorization': 'Bearer ' + tokenService.getToken()
     }
@@ -31,9 +31,10 @@ export function getAllInterests() {
 }
 
 export function getAllDislikes() {
-  return fetch(BASE_URL, {
+  return fetch(`${BASE_URL}/dislikes`, {
     headers: {
       'Authorization': 'Bearer ' + tokenService.getToken()
     }
   })
+  .then(res => res.json());
 }

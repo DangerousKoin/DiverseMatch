@@ -6,17 +6,14 @@ import * as profilesAPI from '../../utils/profileService';
 
 function TopicCard({topic, isProfile, user, deleteTopic}) { 
 
-  const [interests, setInterests] = useState([]);
-  const [dislikes, setDislikes] = useState([]);
+
   
   const delTopicHandler = () => deleteTopic(topic._id)
 
-  const topicId = topic._id;
-
   async function addInterest() {
     try {
-        const data = await profilesAPI.addInterest(topicId);
-        setInterests([...data.interests]);
+        const data = await profilesAPI.addInterest(topic._id);
+     
     } catch (err) {
         console.log(err)
     }
@@ -24,8 +21,8 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
 
   async function addDislike() {
     try {
-        const data = await profilesAPI.addDislike(topicId);
-        setDislikes([...data.dislikes]);
+        const data = await profilesAPI.addDislike(topic._id);
+   
     } catch (err) {
         console.log(err)
     }

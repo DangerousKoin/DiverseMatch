@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import '../styles/App.css';
 import userService from '../utils/userService'
 import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
 import LoginForm from '../components/Forms/LoginForm';
 import SignupForm from '../components/Forms/SignupForm';
-import { Grid, Modal, Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 function App() {
 

@@ -1,13 +1,15 @@
 const Topic = require('../models/topic');
 const { v4: uuidv4 } = require('uuid');
 const S3 = require('aws-sdk/clients/s3');
+const { isTSUndefinedKeyword } = require('@babel/types');
 const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
     createTopic,
     search,
     deleteTopic,
-    index
+    getAllTopics,
+    getUserTopics
 }
 
 
@@ -34,7 +36,7 @@ async function search(req, res){
         const searchList = await Topic.find({});
         const keyword = req.params.keyword.toLowerCase();
         let topics = [];
-        searchList.forEach(function(topic) {
+        searchList.forEach(function(topic) { 
             let topicTitle = topic.title.toLowerCase();
             if (topicTitle.includes(keyword)) {
                 topics.push(topic);
@@ -59,7 +61,16 @@ async function deleteTopic(req, res){
     }
 }
 
-async function index(req, res){
+async function getAllTopics(req, res){
+    try {
+        const topics = await Topic.find({});        
+        res.status(200).json({topics})
+    } catch(err){
+
+    }
+}
+
+async function getUserTopics(req, res){
     try {
         const searchList = await Topic.find({});
         let topics = [];
@@ -69,10 +80,9 @@ async function index(req, res){
                 topics.sort();
             }
         })
-        
-        
         res.status(200).json({topics})
     } catch(err){
 
     }
 }
+

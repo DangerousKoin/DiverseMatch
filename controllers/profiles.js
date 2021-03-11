@@ -6,7 +6,9 @@ const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
     addInterest,
-    addDislike
+    addDislike,
+    getInterests,
+    getDislikes
 }
 
 async function addInterest(req, res){
@@ -23,9 +25,54 @@ async function addInterest(req, res){
 
 async function addDislike(req, res){
     try {
-        console.log(req.body)
+        const topic = await Topic.findById(req.params.id);
+        const user = await User.findById(req.user._id);
+        user.dislikes.push(topic);
+        user.save();
+        res.json({data: 'dislike added'})
     } catch(err){
-        return res.status(401).json(err)
+        res.json({error: err})
+    }
+}
+
+async function getInterests(req, res){
+    try {
+        console.log("hello")
+        const user = await User.findById(req.user._id);
+        const userInterests = await user.interests.find({});
+        let interestList = [];
+        userInterests.forEach(function(topic) {
+            console.log("interest topic", topic);
+            const topicMatch = Topic.findById(topic._id)
+            console.log("topic match", topicMatch);
+            if (user == req.user._id) {
+                interestList.push(topicMatch);
+                interestList.sort();
+            }
+        })
+        res.status(200).json({interestList})
+    } catch(err){
+
+    }
+}
+
+async function getDislikes(req, res){
+    try {
+        
+        const user = await User.findById(req.user._id);
+        const userDislikes = await user.dislikes.find({});
+        let dislikeList = [];
+        userDislikes.forEach(function(topic) {
+            const topicMatch = Topic.findById(topic._id)
+            console.log("topic match", topicMatch);
+            if (user == req.user._id) {
+                dislikeList.push(topicMatch);
+                dislikeList.sort();
+            }
+        })
+        res.status(200).json({dislikeList})
+    } catch(err){
+
     }
 }
 

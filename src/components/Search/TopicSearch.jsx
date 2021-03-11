@@ -3,15 +3,14 @@ import { Button, Form, Grid, Segment } from 'semantic-ui-react';
 import {Redirect, Link} from 'react-router-dom';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
-import * as profilesAPI from '../../utils/profileService';
+
 
 
 
 export default function Search(){
   const [state, setState] = useState({});
   const [topics, setTopics] = useState([]);
-  const [interests, setInterests] = useState([]);
-  const [dislikes, setDislikes] = useState([]);
+
 
 
   
@@ -27,7 +26,7 @@ export default function Search(){
   async function handleSubmit(e){
     e.preventDefault()
     try {
-      if (state.title === '') {getTopics()} else {
+      if (state.title == "" || state.title == null) {getTopics()} else {
         const data = await topicsAPI.search(state.title);
         const formData = new FormData();
         formData.append('title', state.title);
@@ -45,32 +44,14 @@ export default function Search(){
   async function getTopics(){
     
     try {
-      const data = await topicsAPI.getAll();
+      const data = await topicsAPI.getAllTopics();
       setTopics([...data.topics]);
     } catch(err){
       console.log(err, ' this is the error');
     }
   }
 
-  async function getInterests(){
-    
-    try {
-      const data = await profilesAPI.getAllInterests();
-      setInterests([...data.interests]);
-    } catch(err){
-      console.log(err, ' this is the error');
-    }
-  }
-
-  async function getDislikes(){
-    
-    try {
-      const data = await profilesAPI.getAllDislikes();
-      setDislikes([...data.dislikes]);
-    } catch(err){
-      console.log(err, ' this is the error');
-    }
-  }
+  
   
   return (
   <>
