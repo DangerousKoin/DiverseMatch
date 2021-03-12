@@ -14,7 +14,7 @@ module.exports = {
 };
 
 function signup(req, res) {
-  console.log(req.body, req.file)
+  
 
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ function signup(req, res) {
   //your bucket name goes where collectorcat is 
   //////////////////////////////////////////////////////////////////////////////////
   s3.upload(params, async function(err, data){
-    console.log(data, 'from aws') // data.Location is our photoUrl that exists on aws
+    
     const user = new User({...req.body, avatar: data.Location});
     try {
       await user.save();
@@ -47,7 +47,7 @@ function signup(req, res) {
 async function login(req, res) {
   try {
     const user = await User.findOne({username: req.body.username});
-    console.log(user, ' this user')
+    
     if (!user) return res.status(401).json({err: 'bad credentials'});
     // had to update the password from req.body.pw, to req.body password
     user.comparePassword(req.body.password, (err, isMatch) => {

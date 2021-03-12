@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../../styles/TopicCard.css';
-import { Card, Icon, Image, Feed, Button, Grid } from 'semantic-ui-react'
-import * as profilesAPI from '../../utils/profileService';
+import { Card, Image, Button, Grid } from 'semantic-ui-react'
+import * as profileAPI from '../../utils/profileService';
 
 
 function TopicCard({topic, isProfile, user, deleteTopic}) { 
@@ -12,7 +12,7 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
 
   async function addInterest() {
     try {
-        const data = await profilesAPI.addInterest(topic._id);
+        const data = await profileAPI.addInterest(topic._id);
      
     } catch (err) {
         console.log(err)
@@ -21,7 +21,7 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
 
   async function addDislike() {
     try {
-        const data = await profilesAPI.addDislike(topic._id);
+        const data = await profileAPI.addDislike(topic._id);
    
     } catch (err) {
         console.log(err)

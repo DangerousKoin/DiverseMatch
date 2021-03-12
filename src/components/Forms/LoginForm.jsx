@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../System/ErrorMessage'
 import userService from '../../utils/userService';
-import { useHistory, Link, Redirect } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal } from 'semantic-ui-react'
 
 export default function LoginForm(props){

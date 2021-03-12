@@ -1,15 +1,15 @@
-import {React, useState} from 'react';
-import {Redirect, Link} from 'react-router-dom';
-import { Header, Segment, Image, Icon, Grid } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Segment, Image, Grid } from 'semantic-ui-react';
 import TopicSearch from '../components/Search/TopicSearch';
 import CriteriaDisplay from '../components/Displays/CriteriaDisplay';
-import * as profilesAPI from '../utils/profileService';
+import * as profileAPI from '../utils/profileService';
 import '../styles/Sidebar.css';
 
 export default function Sidebar({user}){
 
-    const [interests, setInterests] = useState([profilesAPI.getAllInterests()]);
-    const [dislikes, setDislikes] = useState([profilesAPI.getAllDislikes()]);
+    const [interests, setInterests] = useState();
+    const [dislikes, setDislikes] = useState();
 
 
 
@@ -21,7 +21,7 @@ export default function Sidebar({user}){
     async function getInterests(){
     
         try {
-          const data = await profilesAPI.getAllInterests();
+          const data = await profileAPI.getAllInterests();
           setInterests([...data.interests]);
         } catch(err){
           console.log(err, ' this is the error');
@@ -31,14 +31,17 @@ export default function Sidebar({user}){
       async function getDislikes(){
         
         try {
-          const data = await profilesAPI.getAllDislikes();
+          const data = await profileAPI.getAllDislikes();
           setDislikes([...data.dislikes]);
         } catch(err){
           console.log(err, ' this is the error');
         }
       }
 
-      
+      useEffect(() => {
+        getInterests();
+        getDislikes();
+      }, [])
 
     return (
          

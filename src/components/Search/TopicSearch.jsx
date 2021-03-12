@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Form, Grid, Segment } from 'semantic-ui-react';
-import {Redirect, Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Button, Form, Grid } from 'semantic-ui-react';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
 

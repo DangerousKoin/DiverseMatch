@@ -37,20 +37,21 @@ async function addDislike(req, res){
 
 async function getInterests(req, res){
     try {
-        console.log("hello")
         const user = await User.findById(req.user._id);
         const userInterests = await user.interests.find({});
-        let interestList = [];
+        console.log("interest list", userInterests);
+        let interests = [];
         userInterests.forEach(function(topic) {
             console.log("interest topic", topic);
-            const topicMatch = Topic.findById(topic._id)
+            let topicMatch = Topic.findById(topic._id);
             console.log("topic match", topicMatch);
             if (user == req.user._id) {
-                interestList.push(topicMatch);
-                interestList.sort();
+                interests.push(topicMatch);
+                interests.sort();
             }
         })
-        res.status(200).json({interestList})
+        
+        res.status(200).json({interests})
     } catch(err){
 
     }
@@ -61,16 +62,16 @@ async function getDislikes(req, res){
         
         const user = await User.findById(req.user._id);
         const userDislikes = await user.dislikes.find({});
-        let dislikeList = [];
+        let dislikes = [];
         userDislikes.forEach(function(topic) {
-            const topicMatch = Topic.findById(topic._id)
+            let topicMatch = Topic.findById(topic._id);
             console.log("topic match", topicMatch);
             if (user == req.user._id) {
-                dislikeList.push(topicMatch);
-                dislikeList.sort();
+                dislikes.push(topicMatch);
+                dislikes.sort();
             }
         })
-        res.status(200).json({dislikeList})
+        res.status(200).json({dislikes})
     } catch(err){
 
     }

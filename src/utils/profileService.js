@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/profiles'
+const BASE_URL = '/api/profile/'
 
 export function addInterest(id){
   

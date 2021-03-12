@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {  Grid, Modal, Segment } from 'semantic-ui-react'
-import ProfileDisplay from '../components/Displays/ProfileDisplay';
+import UserDisplay from '../components/Displays/UserDisplay';
 import AddTopicForm from '../components/Forms/AddTopicForm';
 
 export default function Content({user, handleLogout}){  
@@ -13,7 +13,7 @@ export default function Content({user, handleLogout}){
           <Grid.Column >
             {user ?
               <Route exact path={`/${user.username}`}>
-                <ProfileDisplay user={user} handleLogout={handleLogout}/>
+                <UserDisplay user={user} handleLogout={handleLogout}/>
                 <AddTopicForm user={user} />
                 
               </Route>

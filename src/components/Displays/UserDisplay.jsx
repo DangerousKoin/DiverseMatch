@@ -1,10 +1,10 @@
 import React from 'react';
-import {  Image, Grid, Segment, Button } from 'semantic-ui-react';
+import {  Image, Grid, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-import '../../styles/ProfDisp.css';
+import '../../styles/UserDisplay.css';
 
 
-export default function ProfileDisplay({user, handleLogout}) { 
+export default function UserDisplay({user, handleLogout}) { 
   return (
   <Grid columns={2}>
     
