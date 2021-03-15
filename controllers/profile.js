@@ -1,8 +1,5 @@
 const Topic = require('../models/topic');
 const User = require('../models/user');
-const { v4: uuidv4 } = require('uuid');
-const S3 = require('aws-sdk/clients/s3');
-const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
     addInterest,

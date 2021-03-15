@@ -20,7 +20,7 @@ function App() {
     setUser(userService.getUser());
     getInterests();
     getDislikes();
-  }
+  };
 
   function handleLogout(){
     userService.logout();
