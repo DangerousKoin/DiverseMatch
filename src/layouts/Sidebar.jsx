@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import TopicSearch from '../components/Search/TopicSearch';
-import CriteriaDisplay from '../components/Displays/CriteriaDisplay';
+import ProfileDisplay from '../components/Displays/ProfileDisplay';
 import * as profileAPI from '../utils/profileService';
 import '../styles/Sidebar.css';
 
@@ -10,13 +10,6 @@ export default function Sidebar({user}){
 
     const [interests, setInterests] = useState();
     const [dislikes, setDislikes] = useState();
-
-
-
- 
-    
-    
-  
 
     async function getInterests(){
     
@@ -68,7 +61,7 @@ export default function Sidebar({user}){
                     <Grid>
                         <Grid.Column>
                             <Grid.Row>
-                                <CriteriaDisplay user={user} interests={interests} dislikes={dislikes} />
+                                <ProfileDisplay user={user} interests={interests} dislikes={dislikes} />
                             </Grid.Row>
                             <Grid.Row id="searchBox">
                                 <TopicSearch />

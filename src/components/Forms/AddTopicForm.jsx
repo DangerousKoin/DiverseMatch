@@ -69,7 +69,7 @@ export default function AddTopicForm(handleAddTopic, user){
   }
 
   useEffect(() => {
-    getTopics()
+    getTopics();
   }, [])
 
 

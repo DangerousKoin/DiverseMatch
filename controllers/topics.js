@@ -53,6 +53,7 @@ async function search(req, res){
 async function deleteTopic(req, res){
     try {
         const topic = await Topic.findById(req.params.id);
+        
         topic.remove();
         await topic.save();
         res.json({data: 'topic removed'})

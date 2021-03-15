@@ -4,11 +4,12 @@ import TopicCard from '../Cards/TopicCard';
 
 
 
-export default function CriteriaDisplay({user, interests, dislikes}) { 
+export default function ProfileDisplay({user, interests, dislikes}) { 
   return (
   <Grid>
     <h2>Interests</h2>
-    {interests.map((topic) => {
+    {console.log("prof user", user, "prof interests", interests, "prof dislikes", dislikes)};
+    {/* {interests.map((topic) => {
                     
                 return ( 
                         <TopicCard topic={topic} key={topic._id} user={user} />
@@ -19,7 +20,7 @@ export default function CriteriaDisplay({user, interests, dislikes}) {
                 return ( 
                         <TopicCard topic={topic} key={topic._id} user={user} />
                     )
-                })}
+                })} */}
   </Grid>
 
   );
