@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import {  Grid, Modal, Segment } from 'semantic-ui-react'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import {  Grid, Segment } from 'semantic-ui-react'
 import UserDisplay from '../components/Displays/UserDisplay';
 import AddTopicForm from '../components/Forms/AddTopicForm';
 

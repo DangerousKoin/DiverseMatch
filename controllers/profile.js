@@ -42,11 +42,13 @@ async function getInterests(req, res){
         const userInterests = user.interests;
         const interests = [];
         if (user._id == req.user._id) {
-        searchList.forEach(function(topic) {
-            if (topic)
-            interests.push(topicMatch);
-            interests.sort();
-            console.log("backend interests", interests)
+            userInterests.forEach(function(interest){
+                searchList.forEach(function(topic) {
+                if (topic._id.toString() == interest._id.toString()) {
+                    interests.push(topic);
+                    interests.sort();
+                }
+            })
         })
     }
         res.status(200).json({interests})
@@ -57,17 +59,20 @@ async function getInterests(req, res){
 
 async function getDislikes(req, res){
     try {
-        
+        const searchList = await Topic.find({});
         const user = await User.findById(req.user._id);
-        const userDislikes = await user.dislikes.find({});
+        const userDislikes = user.dislikes;
         const dislikes = [];
-        userDislikes.forEach(function(topic) {
-            let topicMatch = Topic.findById(topic._id);
-            if (user == req.user._id) {
-                dislikes.push(topicMatch);
-                dislikes.sort();
-            }
+        if (user._id == req.user._id) {
+            userDislikes.forEach(function(dislike){
+                searchList.forEach(function(topic) {
+                if (topic._id.toString() == dislike._id.toString()) {
+                    dislikes.push(topic);
+                    dislikes.sort();
+                }
+            })
         })
+    }
         res.status(200).json({dislikes})
     } catch(err){
 

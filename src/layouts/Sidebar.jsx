@@ -1,43 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import TopicSearch from '../components/Search/TopicSearch';
 import ProfileDisplay from '../components/Displays/ProfileDisplay';
-import * as profileAPI from '../utils/profileService';
 import '../styles/Sidebar.css';
 
-export default function Sidebar({user}){
-
-    const [interests, setInterests] = useState();
-    const [dislikes, setDislikes] = useState();
-
-    async function getInterests(){
-    
-        try {
-          const data = await profileAPI.getAllInterests();
-          setInterests([...data.interests]);
-        } catch(err){
-          console.log(err, ' this is the error');
-        }
-      }
-    
-      async function getDislikes(){
-        
-        try {
-          const data = await profileAPI.getAllDislikes();
-          setDislikes([...data.dislikes]);
-        } catch(err){
-          console.log(err, ' this is the error');
-        }
-      }
-
-      useEffect(() => {
-        getInterests();
-        getDislikes();
-      }, [])
+export default function Sidebar({user, interests, dislikes}){
 
     return (
-         
             <>
             <Segment id="boxCont">
                 <Grid>
@@ -48,7 +18,6 @@ export default function Sidebar({user}){
                             
                             <Image id="avatarImg" src={user.avatar ? user.avatar : "https://react.semantic-ui.com/images/wireframe/square-image.png"}></Image>
                             <div id="matchNumCont" ><div id="matchNum">19</div></div>
-                           
                         </Link>
                         :
                         <Link to="/">
@@ -72,8 +41,5 @@ export default function Sidebar({user}){
             </Segment>
             
             </>
-        
-        
-        
     )
 }
