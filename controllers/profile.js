@@ -24,10 +24,14 @@ async function addInterest(req, res){
 
 async function deleteInterest(req, res){
     try {
-        const interest = await User.interest.findById(req.params.id);
-        
-        interest.remove();
-        await interest.save();
+        const user = await User.findById(req.user._id);
+        let userInterests = user.interests;
+        userInterests.forEach(function(interest){
+            if (interest._id == req.params.id){
+                user.interests.remove(interest);
+                user.save();
+            }
+        })
         res.json({data: 'interest removed'})
     } catch(err){
         res.json({error: err})
@@ -47,14 +51,14 @@ async function addDislike(req, res){
 }
 
 async function deleteDislike(req, res){
-
     try {
         const user = await User.findById(req.user._id);
         let userDislikes = user.dislikes;
         userDislikes.forEach(function(dislike){
             if (dislike._id == req.params.id){
-                userDislikes.remove(dislike);
-                userDislikes.save();
+                console.log("true", dislike)
+                user.dislikes.remove(dislike);
+                user.save();
             }
         })
         res.json({data: 'dislike removed'})

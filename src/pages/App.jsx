@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import '../styles/App.css';
-import userService from '../utils/userService'
 import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
 import LoginForm from '../components/Forms/LoginForm';
 import SignupForm from '../components/Forms/SignupForm';
+import userService from '../utils/userService';
 import * as topicsAPI from '../utils/topicService';
 import * as profileAPI from '../utils/profileService';
 
@@ -70,9 +70,9 @@ function App() {
   return (
     <div className="App">
       <Route path="/">
+
         {userService.getUser() ?
-            <Grid id="container" columns={2}>
-          
+          <Grid id="container" columns={2}>
             <Grid.Column id="sidebar">
               <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} />
             </Grid.Column>
@@ -80,20 +80,19 @@ function App() {
               <Content user={user} handleLogout={handleLogout} />
             </Grid.Column>
           </Grid>
-          :
-          
+        :
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
         }
         
-      
         <Route exact path="/login">
           <LoginForm handleSignUpOrLogin={handleSignUpOrLogin} />
         </Route>
         <Route exact path="/signup">
           <SignupForm handleSignUpOrLogin={handleSignUpOrLogin} />
         </Route>
+
       </Route>
     </div>
   );
