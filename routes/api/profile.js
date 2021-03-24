@@ -6,6 +6,9 @@ router.post('/interest/:id', profileCtrl.addInterest);
 router.post('/dislike/:id', profileCtrl.addDislike);
 router.get('/interests', profileCtrl.getInterests);
 router.get('/dislikes', profileCtrl.getDislikes);
+router.delete('/interest/:id', profileCtrl.deleteInterest);
+router.delete('/dislike/:id', profileCtrl.deleteDislike);
+
 
 
 

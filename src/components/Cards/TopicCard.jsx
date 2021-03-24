@@ -19,6 +19,15 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
     }
   }
 
+  async function deleteInterest() {
+    try {
+        const data = await profileAPI.removeInterest(topic._Id);
+        // getTopics();  need to run this with getInterests()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
   async function addDislike() {
     try {
         const data = await profileAPI.addDislike(topic._id);
@@ -27,6 +36,15 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
         console.log(err)
     }
   }
+
+  async function deleteDislike() {
+    try {
+        const data = await profileAPI.removeDislike(topic._id);
+        // getTopics();  need to run this with getInterests()
+    } catch (err) {
+        console.log(err)
+    }
+}
 
   return (
     <>
@@ -69,6 +87,14 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
           -
           </Button>
         </Grid.Row>
+    </Grid.Column>
+    <Grid.Column>
+    <Button onClick={deleteInterest}>
+            X-Int
+          </Button>
+          <Button onClick={deleteDislike}>
+            X-Dis
+          </Button>
     </Grid.Column>
     </>
       }

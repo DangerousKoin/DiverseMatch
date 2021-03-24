@@ -12,12 +12,30 @@ export function addInterest(id){
   }).then(res => res.json());
 }
 
+export function removeInterest(id){
+  return fetch(`${BASE_URL}/interest/${id}`, {
+      method: 'DELETE',
+      headers: {
+          'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+  }).then(res => res.json());
+}
+
 export function addDislike(id){
   return fetch(`${BASE_URL}/dislike/${id}`, {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
       }
+  }).then(res => res.json());
+}
+
+export function removeDislike(id){
+  return fetch(`${BASE_URL}/dislike/${id}`, {
+      method: 'DELETE',
+      headers: {
+          'Authorization': 'Bearer ' + tokenService.getToken()
+        }
   }).then(res => res.json());
 }
 

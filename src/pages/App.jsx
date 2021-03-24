@@ -6,6 +6,7 @@ import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
 import LoginForm from '../components/Forms/LoginForm';
 import SignupForm from '../components/Forms/SignupForm';
+import * as topicsAPI from '../utils/topicService';
 import * as profileAPI from '../utils/profileService';
 
 import { Grid } from 'semantic-ui-react';
@@ -13,6 +14,7 @@ import { Grid } from 'semantic-ui-react';
 function App() {
 
   const [user, setUser] = useState(userService.getUser());
+  const [topics, setTopics] = useState([]);
   const [interests, setInterests] = useState([]);
   const [dislikes, setDislikes] = useState([]);
 
@@ -28,6 +30,16 @@ function App() {
     setInterests([]);
     setDislikes([]);
   };
+
+  async function getTopics(){
+    
+    try {
+      const data = await topicsAPI.getAllTopics();
+      setTopics([...data.topics]);
+    } catch(err){
+      console.log(err, ' this is the error');
+    }
+  }
 
   async function getInterests(){
   
@@ -52,26 +64,29 @@ function App() {
     useEffect(() => {
       getInterests();
       getDislikes();
+      getTopics();
     }, [])
 
   return (
     <div className="App">
       <Route path="/">
         {userService.getUser() ?
-            null
+            <Grid id="container" columns={2}>
+          
+            <Grid.Column id="sidebar">
+              <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} />
+            </Grid.Column>
+            <Grid.Column id="content">
+              <Content user={user} handleLogout={handleLogout} />
+            </Grid.Column>
+          </Grid>
           :
+          
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
         }
-        <Grid id="container" columns={2}>
-          <Grid.Column id="sidebar">
-            <Sidebar user={user} interests={interests} dislikes={dislikes} />
-          </Grid.Column>
-          <Grid.Column id="content">
-            <Content user={user} handleLogout={handleLogout} />
-          </Grid.Column>
-        </Grid>
+        
       
         <Route exact path="/login">
           <LoginForm handleSignUpOrLogin={handleSignUpOrLogin} />
