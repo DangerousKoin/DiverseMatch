@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import {  Grid, Segment } from 'semantic-ui-react'
 import UserDisplay from '../components/Displays/UserDisplay';
 import AddTopicForm from '../components/Forms/AddTopicForm';
+import MatchFeed from '../components/Feeds/MatchFeed';
+
 
 export default function Content({user, handleLogout}){  
 
@@ -22,6 +24,7 @@ export default function Content({user, handleLogout}){
             }
             <Route exact path="/">
               Match Results
+              <MatchFeed />
             </Route>
           </Grid.Column>
         </Grid>

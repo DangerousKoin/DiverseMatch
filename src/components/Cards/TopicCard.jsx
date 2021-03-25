@@ -5,15 +5,11 @@ import { Card, Image, Button, Grid } from 'semantic-ui-react'
 
 function TopicCard({topic, location, deleteTopic, addInterest, addDislike, deleteInterest, deleteDislike}) { 
 
-
-  
   const delTopicHandler = () => deleteTopic(topic._id);
   const addIntHandler = () => addInterest(topic._id);
   const addDisHandler = () => addDislike(topic._id);
   const delIntHandler = () => deleteInterest(topic._id);
   const delDisHandler = () => deleteDislike(topic._id);
-
-
 
   return (
     <>
