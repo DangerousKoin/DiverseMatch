@@ -65,8 +65,8 @@ function TopicCard({topic, location, deleteTopic, addInterest, addDislike, delet
       }
       {location === "interests" ?
         <Grid.Column>
-          <Button onClick={delIntHandler}>
-            X-Int
+          <Button onClick={delIntHandler} style={{ width: '2rem', height: '2rem', margin: '0.25rem', padding: '0' }}>
+            X
           </Button>
         </Grid.Column>
         :
@@ -74,8 +74,8 @@ function TopicCard({topic, location, deleteTopic, addInterest, addDislike, delet
       }
       {location === "dislikes" ?
         <Grid.Column>
-          <Button onClick={delDisHandler}>
-            X-Dis
+          <Button onClick={delDisHandler} style={{ width: '2rem', height: '2rem', margin: '0.25rem', padding: '0' }}>
+            X
           </Button>
         </Grid.Column>
       :
