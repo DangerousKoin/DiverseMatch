@@ -4,7 +4,7 @@ import * as topicsAPI from '../../utils/topicService';
 
 import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 
-export default function AddTopicForm(handleAddTopic, user){
+export default function AddTopicForm({handleAddTopic, user}){
   const [selectedFile, setSelectedFile] = useState('')
   const [topics, setTopics] = useState([]);
   const [state, setState] = useState({
@@ -30,12 +30,8 @@ export default function AddTopicForm(handleAddTopic, user){
   }
 
   async function handleAddTopic(topic){
-
     const data = await topicsAPI.create(topic);
-
-
     setTopics([data.topic,  ...topics])
-    
     setState({
       title: '',
       description: ''
@@ -58,7 +54,6 @@ export default function AddTopicForm(handleAddTopic, user){
 }
 
   async function getTopics(){
-    
     try {
       const data = await topicsAPI.getUserTopics();
       setTopics([...data.topics])
@@ -122,7 +117,7 @@ export default function AddTopicForm(handleAddTopic, user){
             
             <Grid>
               <Grid.Column style={{ width: '90%', margin: '10px auto' }}>
-                <TopicFeed topics={topics} isProfile={true} numPhotosCol={1} user={user} deleteTopic={deleteTopic} />
+                <TopicFeed topics={topics} numPhotosCol={1} user={user} location={"form"} deleteTopic={deleteTopic} />
               </Grid.Column>
             </Grid> 
     </>

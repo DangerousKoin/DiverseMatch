@@ -32,7 +32,6 @@ function App() {
   };
 
   async function getTopics(){
-    
     try {
       const data = await topicsAPI.getAllTopics();
       setTopics([...data.topics]);
@@ -42,7 +41,6 @@ function App() {
   }
 
   async function getInterests(){
-  
       try {
         const data = await profileAPI.getAllInterests();
         setInterests([...data.interests]);
@@ -52,7 +50,6 @@ function App() {
     }
   
     async function getDislikes(){
-      
       try {
         const data = await profileAPI.getAllDislikes();
         setDislikes([...data.dislikes]);
@@ -60,6 +57,42 @@ function App() {
         console.log(err, ' this is the error');
       }
     }
+
+    async function addInterest(topicId) {
+      try {
+          const data = await profileAPI.addInterest(topicId);
+          getInterests();
+      } catch (err) {
+          console.log(err)
+      }
+    }
+  
+    async function deleteInterest(topicId) {
+      try {
+          const data = await profileAPI.removeInterest(topicId);
+          getInterests();
+      } catch (err) {
+          console.log(err)
+      }
+  }
+  
+    async function addDislike(topicId) {
+      try {
+          const data = await profileAPI.addDislike(topicId);
+          getDislikes();
+      } catch (err) {
+          console.log(err)
+      }
+    }
+  
+    async function deleteDislike(topicId) {
+      try {
+          const data = await profileAPI.removeDislike(topicId);
+          getDislikes();
+      } catch (err) {
+          console.log(err)
+      }
+  }
 
     useEffect(() => {
       getInterests();
@@ -74,7 +107,7 @@ function App() {
         {userService.getUser() ?
           <Grid id="container" columns={2}>
             <Grid.Column id="sidebar">
-              <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} />
+              <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} addInterest={addInterest} addDislike={addDislike} deleteInterest={deleteInterest} deleteDislike={deleteDislike} />
             </Grid.Column>
             <Grid.Column id="content">
               <Content user={user} handleLogout={handleLogout} />

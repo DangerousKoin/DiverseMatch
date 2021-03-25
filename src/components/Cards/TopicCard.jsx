@@ -1,47 +1,19 @@
 import React from 'react';
 import '../../styles/TopicCard.css';
 import { Card, Image, Button, Grid } from 'semantic-ui-react'
-import * as profileAPI from '../../utils/profileService';
 
 
-function TopicCard({topic, isProfile, user, deleteTopic}) { 
+function TopicCard({topic, location, deleteTopic, addInterest, addDislike, deleteInterest, deleteDislike}) { 
 
 
   
-  const delTopicHandler = () => deleteTopic(topic._id)
+  const delTopicHandler = () => deleteTopic(topic._id);
+  const addIntHandler = () => addInterest(topic._id);
+  const addDisHandler = () => addDislike(topic._id);
+  const delIntHandler = () => deleteInterest(topic._id);
+  const delDisHandler = () => deleteDislike(topic._id);
 
-  async function addInterest() {
-    try {
-        const data = await profileAPI.addInterest(topic._id);
-     
-    } catch (err) {
-        console.log(err)
-    }
-  }
 
-  async function deleteInterest() {
-    try {
-        const data = await profileAPI.removeInterest(topic._Id);
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-  async function addDislike() {
-    try {
-        const data = await profileAPI.addDislike(topic._id);
-    } catch (err) {
-        console.log(err)
-    }
-  }
-
-  async function deleteDislike() {
-    try {
-        const data = await profileAPI.removeDislike(topic._id);
-    } catch (err) {
-        console.log(err)
-    }
-}
 
   return (
     <>
@@ -65,36 +37,55 @@ function TopicCard({topic, isProfile, user, deleteTopic}) {
           </Card>
         </Grid.Column >
 
-      {isProfile ?
+
+      {location === "form" ?
         <Grid.Column style={{ margin: '1rem' }}>
           <Button onClick={delTopicHandler}>
             X
           </Button>
         </Grid.Column>
-      :
-      <>
-      <Grid.Column style={{ width: 'auto', margin: '0 0.75rem', padding: '0' }}>
-        <Grid.Row>
-          <Button onClick={addInterest} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
-          +
-          </Button>
-        </Grid.Row>
-        <Grid.Row>
-          <Button onClick={addDislike} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
-          -
-          </Button>
-        </Grid.Row>
-    </Grid.Column>
-    <Grid.Column>
-    <Button onClick={deleteInterest}>
+        :
+        null
+      } 
+      {location === "search" ?
+        <Grid.Column style={{ width: 'auto', margin: '0 0.75rem', padding: '0' }}>
+          <Grid.Row>
+            <Button onClick={addIntHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+            +
+            </Button>
+          </Grid.Row>
+          <Grid.Row>
+            <Button onClick={addDisHandler} style={{ width: '1.5rem', height: '1.5rem', margin: '0.25rem', padding: '0' }}>
+            -
+            </Button>
+          </Grid.Row>
+        </Grid.Column>
+        :
+        null
+      }
+      {location === "interests" ?
+        <Grid.Column>
+          <Button onClick={delIntHandler}>
             X-Int
           </Button>
-          <Button onClick={deleteDislike}>
+        </Grid.Column>
+        :
+        null
+      }
+      {location === "dislikes" ?
+        <Grid.Column>
+          <Button onClick={delDisHandler}>
             X-Dis
           </Button>
-    </Grid.Column>
-    </>
+        </Grid.Column>
+      :
+        null
       }
+  
+        
+    
+    
+      
       
       
 

@@ -6,16 +6,11 @@ import * as topicsAPI from '../../utils/topicService';
 
 
 
-export default function Search(){
+export default function Search({addInterest, addDislike}){
   const [state, setState] = useState({});
   const [topics, setTopics] = useState([]);
 
-
-
-  
-
   function handleChange(e){
-    
     setState({
       ...state,
       [e.target.name]: e.target.value
@@ -37,11 +32,7 @@ export default function Search(){
     }
   }
 
-
-
-  
   async function getTopics(){
-    
     try {
       const data = await topicsAPI.getAllTopics();
       setTopics([...data.topics]);
@@ -64,8 +55,6 @@ export default function Search(){
                   name="title"
                   placeholder="Search Topics"
                   onChange={handleChange}
-                  
-                  
               />
             </Grid.Column>
             <Grid.Column >
@@ -80,7 +69,7 @@ export default function Search(){
 
       <Grid>
         <Grid.Column >
-        <TopicFeed topics={topics} isProfile={false} numPhotosCol={1}  />
+        <TopicFeed topics={topics} location={"search"} numPhotosCol={1} addInterest={addInterest} addDislike={addDislike} />
         </Grid.Column>
       </Grid>
 

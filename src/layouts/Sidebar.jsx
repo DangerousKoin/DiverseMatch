@@ -5,7 +5,7 @@ import TopicSearch from '../components/Search/TopicSearch';
 import ProfileDisplay from '../components/Displays/ProfileDisplay';
 import '../styles/Sidebar.css';
 
-export default function Sidebar({user, interests, dislikes}){
+export default function Sidebar({user, interests, dislikes, addInterest, addDislike, deleteInterest, deleteDislike}){
 
     return (
             <>
@@ -30,10 +30,10 @@ export default function Sidebar({user, interests, dislikes}){
                     <Grid>
                         <Grid.Column>
                             <Grid.Row>
-                                <ProfileDisplay user={user} interests={interests} dislikes={dislikes} />
+                                <ProfileDisplay user={user} interests={interests} dislikes={dislikes} deleteInterest={deleteInterest} deleteDislike={deleteDislike} />
                             </Grid.Row>
                             <Grid.Row id="searchBox">
-                                <TopicSearch />
+                                <TopicSearch addInterest={addInterest} addDislike={addDislike} />
                             </Grid.Row>
                         </Grid.Column>
                     </Grid>
