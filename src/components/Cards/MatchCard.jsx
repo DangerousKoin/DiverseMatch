@@ -3,7 +3,7 @@ import '../../styles/MatchCard.css';
 import { Card, Image, Button, Grid } from 'semantic-ui-react'
 
 
-function TopicCard({match}) { 
+function MatchCard({match}) {
 
   return (
     <>
@@ -21,8 +21,6 @@ function TopicCard({match}) {
             <strong>{match.username}</strong>
             <br />
             
-            
-        
             </Card.Content>
           </Card>
         </Grid.Column >
@@ -33,4 +31,4 @@ function TopicCard({match}) {
   );
 }
 
-export default TopicCard;
+export default MatchCard;
