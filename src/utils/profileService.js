@@ -56,3 +56,12 @@ export function getAllDislikes() {
   })
   .then(res => res.json());
 }
+
+export function getMatches() {
+  return fetch(`${BASE_URL}/matches`, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+  .then(res => res.json());
+}

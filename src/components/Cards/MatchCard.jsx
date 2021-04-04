@@ -4,7 +4,6 @@ import { Card, Image, Button, Grid } from 'semantic-ui-react'
 
 
 function MatchCard({match}) {
-
   return (
     <>
     <Grid>

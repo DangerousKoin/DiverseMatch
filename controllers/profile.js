@@ -120,7 +120,10 @@ async function getMatches(req, res){
         const userInterests = user.interests;
         const matches = [];
         if (user._id == req.user._id) {
+            console.log("herrroooo!!!!", searchList)
+
             searchList.forEach(function(match) {
+
                 let matchDislikes = match.dislikes;
                 matchDislikes.forEach(function(matchDislike) {
                     userInterests.forEach(function(interest){

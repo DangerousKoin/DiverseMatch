@@ -17,6 +17,7 @@ function App() {
   const [topics, setTopics] = useState([]);
   const [interests, setInterests] = useState([]);
   const [dislikes, setDislikes] = useState([]);
+  const [matches, setMatches] = useState([]);
 
   function handleSignUpOrLogin(){
     setUser(userService.getUser());
@@ -53,6 +54,15 @@ function App() {
       try {
         const data = await profileAPI.getAllDislikes();
         setDislikes([...data.dislikes]);
+      } catch(err){
+        console.log(err, ' this is the error');
+      }
+    }
+
+    async function getMatches(){
+      try {
+        const data = await profileAPI.getMatches();
+        setMatches([...data.matches]);
       } catch(err){
         console.log(err, ' this is the error');
       }
@@ -98,6 +108,7 @@ function App() {
       getInterests();
       getDislikes();
       getTopics();
+      getMatches();
     }, [])
 
   return (
@@ -110,7 +121,7 @@ function App() {
               <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} addInterest={addInterest} addDislike={addDislike} deleteInterest={deleteInterest} deleteDislike={deleteDislike} />
             </Grid.Column>
             <Grid.Column id="content">
-              <Content user={user} handleLogout={handleLogout} />
+              <Content user={user} handleLogout={handleLogout} matches={matches} />
             </Grid.Column>
           </Grid>
         :

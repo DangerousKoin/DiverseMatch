@@ -6,7 +6,7 @@ import AddTopicForm from '../components/Forms/AddTopicForm';
 import MatchFeed from '../components/Feeds/MatchFeed';
 
 
-export default function Content({user, handleLogout}){  
+export default function Content({user, handleLogout, matches}){  
 
     return (
       <>
@@ -24,7 +24,7 @@ export default function Content({user, handleLogout}){
             }
             <Route exact path="/">
               Match Results
-              <MatchFeed />
+              <MatchFeed matches={matches} />
             </Route>
           </Grid.Column>
         </Grid>
