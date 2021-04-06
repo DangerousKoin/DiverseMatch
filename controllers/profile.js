@@ -120,24 +120,28 @@ async function getMatches(req, res){
         const userInterests = user.interests;
         const matches = [];
         if (user._id == req.user._id) {
-            console.log("herrroooo!!!!", searchList)
-
-            searchList.forEach(function(match) {
+                searchList.forEach(function(match) {
 
                 let matchDislikes = match.dislikes;
+                
                 matchDislikes.forEach(function(matchDislike) {
+                    
                     userInterests.forEach(function(interest){
-                        if (matchDislike == interest) {
+                        console.log("int", interest, "dis", matchDislike)
+                        if (matchDislike._id.toString() == interest._id.toString()) {
                             console.log("bingo!")
                             searchList.remove(match);
+                            searchList.save()
                             }
                         })
                 })
-                searchList.save()
+                console.log("hi there")
+
             })
                 // First we checked the match dislikes against each user's interests, if found the match is removed.
                 // Next we check if any of the remaining matches have dislikes of the user's interests and remove them.
-            searchList.forEach(function(match) {
+            console.log("hi there")
+                searchList.forEach(function(match) {
                 let matchInterests = match.interests;
                 matchInterests.forEach(function(matchInterest) {
                     userDislikes.forEach(function(dislike){
@@ -149,6 +153,7 @@ async function getMatches(req, res){
                 })
                 searchList.save();
             })
+            console.log("hello")
                 // Matches with dislikes are now removed from search list to reduce iteration time.
                 // Next we find users with the highest amount of Interests and Dislikes that match.
             searchList.forEach(function(match) {
