@@ -118,68 +118,46 @@ async function getMatches(req, res){
         const user = await User.findById(req.user._id);
         const userDislikes = user.dislikes;
         const userInterests = user.interests;
-        const matches = [];
+        const matches = 0;
+        searchList.forEach(function(match){
+            if (match) {
+                matches++;
+
+            }
+        })
+        console.log("list length", matches)
         if (user._id == req.user._id) {
+            searchMismatches()
+            function searchMismatches() {
                 searchList.forEach(function(match) {
-
-                let matchDislikes = match.dislikes;
-                
-                matchDislikes.forEach(function(matchDislike) {
-                    
-                    userInterests.forEach(function(interest){
-                        console.log("int", interest, "dis", matchDislike)
-                        if (matchDislike._id.toString() == interest._id.toString()) {
-                            console.log("bingo!")
-                            searchList.remove(match);
-                            searchList.save()
-                            }
+                    let matchDislikes = match.dislikes;
+                    let matchInterests = match.interests;
+                    matchDislikes.forEach(function(matchDislike) {
+                        userInterests.forEach(function(interest) {
+                            matchInterests.forEach(function(matchInterest) {
+                                userDislikes.forEach(function(dislike) {
+                                    if (matchDislike._id.toString() == interest._id.toString()) {
+                                        console.log("bingo!");
+                                        searchList.remove(match);
+                                        searchMistatches();
+                                    } else if (matchInterest._id.toString() == dislike._id.toString()) {
+                                        console.log("boingo!");
+                                        searchList.remove(match);
+                                        searchMistatches();
+                                        
+                                    } else {
+                                        searchList.save();
+                                    }
+                                })
+                            })
                         })
-                })
-                console.log("hi there")
-
-            })
-                // First we checked the match dislikes against each user's interests, if found the match is removed.
-                // Next we check if any of the remaining matches have dislikes of the user's interests and remove them.
-            console.log("hi there")
-                searchList.forEach(function(match) {
-                let matchInterests = match.interests;
-                matchInterests.forEach(function(matchInterest) {
-                    userDislikes.forEach(function(dislike){
-                        if (matchInterest == dislike) {
-                            console.log("boingo!")
-                            searchList.remove(match);
-                            }
-                        })
-                })
-                searchList.save();
-            })
-            console.log("hello")
-                // Matches with dislikes are now removed from search list to reduce iteration time.
-                // Next we find users with the highest amount of Interests and Dislikes that match.
-            searchList.forEach(function(match) {
-                let matchInterests = match.interests;
-                let matchDislikes = match.dislikes;
-                let iCount = 0;
-                let dCount = 0;
-                userInterests.forEach(function(interest){
-                    matchInterests.forEach(function(matchInterest){
-                        if (matchInterest == interest) {
-                            iCount++
-                            matches.push([match, iCount]);
-                        }
                     })
                 })
-                userDislikes.forEach(function(dislike){
-                    matchDislikes.ForEach(function(matchDislike){
-                        if (matchDislike == dislike) {
-                            dCount++
-                            matches.push([match, dCount]);
-                        }
-                    })
-                })
-            })
-    }
-        res.status(200).json({matches})
+            }
+            
+        }
+        console.log("search list", searchList);
+        res.status(200).json({searchList})
     } catch(err){
 
     }
