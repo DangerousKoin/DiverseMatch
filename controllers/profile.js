@@ -118,14 +118,26 @@ async function getMatches(req, res){
         const user = await User.findById(req.user._id);
         const userInterests = user.interests;
         const matches = [];
+        let prevMatch = [];
+        
         if (user._id == req.user._id) {
             searchList.forEach(function(match) {
+                let count = 1;
                 let matchInterests = match.interests;
                 matchInterests.forEach(function(matchInterest) {
                     userInterests.forEach(function(interest) {
                         if (matchInterest._id.toString() == interest._id.toString()) {
-                            console.log("bingo!");
-                            matches.push(match);
+                            
+                            if (match != prevMatch) {
+                                console.log("bingo!");
+                                matches.push(match);
+                                
+                                prevMatch = match;
+                            } else {
+                                count++;
+                                prevMatch = match;
+                            }
+                            console.log("count", count);
                         }
                     })
                 })
