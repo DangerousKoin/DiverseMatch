@@ -7,10 +7,9 @@ function MatchCard({match}) {
   return (
     <>
     <Grid>
-      <Grid.Row style={{ textAlign: 'left' }}>
-        <Grid.Column style={{ width: '16rem', padding: '0', margin: '0 0 0 1rem' }}>
+      <Grid.Row style={{ textAlign: 'left', width: '16rem', padding: '0', margin: '1rem 0 1rem 1rem' }}>
           <Card id='matchCard' key={match._id}>
-            <Card.Content id='topicContent'>
+            <Card.Content id='matchContent'>
                 <Image
                     id='matchImg'
                     floated='left'
@@ -22,7 +21,6 @@ function MatchCard({match}) {
             Match Score: {match.matchScore}
             </Card.Content>
           </Card>
-        </Grid.Column >
     </Grid.Row>
   </Grid>
   </>

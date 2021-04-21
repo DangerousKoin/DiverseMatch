@@ -23,8 +23,17 @@ export default function Content({user, handleLogout, matches}){
               null
             }
             <Route exact path="/">
-              Match Results
-              <MatchFeed matches={matches} />
+              <Segment id="elementCont">
+                <Grid>
+                  <Grid.Column>
+                      <h2><strong>Match Results</strong></h2>
+                      <br />
+                      <MatchFeed matches={matches} />
+                      <br />
+                  </Grid.Column>
+                </Grid>
+                
+              </Segment>
             </Route>
           </Grid.Column>
         </Grid>

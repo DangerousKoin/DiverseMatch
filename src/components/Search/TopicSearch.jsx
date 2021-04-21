@@ -69,7 +69,7 @@ export default function Search({addInterest, addDislike}){
 
       <Grid>
         <Grid.Column >
-        <TopicFeed topics={topics} location={"search"} numPhotosCol={1} addInterest={addInterest} addDislike={addDislike} />
+        <TopicFeed topics={topics} location={"search"} addInterest={addInterest} addDislike={addDislike} />
         </Grid.Column>
       </Grid>
 
