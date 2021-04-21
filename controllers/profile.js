@@ -116,48 +116,25 @@ async function getMatches(req, res){
     try {
         const searchList = await User.find({});
         const user = await User.findById(req.user._id);
-        const userDislikes = user.dislikes;
         const userInterests = user.interests;
-        const matches = 0;
-        searchList.forEach(function(match){
-            if (match) {
-                matches++;
-
-            }
-        })
-        console.log("list length", matches)
+        const matches = [];
         if (user._id == req.user._id) {
-            searchMismatches()
-            function searchMismatches() {
-                searchList.forEach(function(match) {
-                    let matchDislikes = match.dislikes;
-                    let matchInterests = match.interests;
-                    matchDislikes.forEach(function(matchDislike) {
-                        userInterests.forEach(function(interest) {
-                            matchInterests.forEach(function(matchInterest) {
-                                userDislikes.forEach(function(dislike) {
-                                    if (matchDislike._id.toString() == interest._id.toString()) {
-                                        console.log("bingo!");
-                                        searchList.remove(match);
-                                        searchMistatches();
-                                    } else if (matchInterest._id.toString() == dislike._id.toString()) {
-                                        console.log("boingo!");
-                                        searchList.remove(match);
-                                        searchMistatches();
-                                        
-                                    } else {
-                                        searchList.save();
-                                    }
-                                })
-                            })
-                        })
+            searchList.forEach(function(match) {
+                let matchInterests = match.interests;
+                matchInterests.forEach(function(matchInterest) {
+                    userInterests.forEach(function(interest) {
+                        if (matchInterest._id.toString() == interest._id.toString()) {
+                            console.log("bingo!");
+                            matches.push(match);
+                        }
                     })
                 })
-            }
-            
+            })
         }
-        console.log("search list", searchList);
-        res.status(200).json({searchList})
+    
+            
+        
+        res.status(200).json({matches})
     } catch(err){
 
     }

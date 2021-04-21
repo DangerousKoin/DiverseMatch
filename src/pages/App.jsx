@@ -30,6 +30,7 @@ function App() {
     setUser({user: null});
     setInterests([]);
     setDislikes([]);
+    setMatches([]);
   };
 
   async function getTopics(){
@@ -61,6 +62,7 @@ function App() {
 
     async function getMatches(){
       try {
+        console.log("yo")
         const data = await profileAPI.getMatches();
         setMatches([...data.matches]);
       } catch(err){
