@@ -15,11 +15,11 @@ function MatchCard({match}) {
                     id='matchImg'
                     floated='left'
                     size='tiny'
-                    src={match.icon ? match.icon : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
+                    src={match.avatar ? match.avatar : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
                 />
             <strong>{match.username}</strong>
             <br />
-            
+            Match Score: {match.matchScore}
             </Card.Content>
           </Card>
         </Grid.Column >

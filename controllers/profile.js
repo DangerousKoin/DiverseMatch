@@ -117,35 +117,36 @@ async function getMatches(req, res){
         const searchList = await User.find({});
         const user = await User.findById(req.user._id);
         const userInterests = user.interests;
-        const matches = [];
+        let matches = [];
         let prevMatch = [];
         
         if (user._id == req.user._id) {
             searchList.forEach(function(match) {
-                let count = 1;
+                match.matchScore = 1;
                 let matchInterests = match.interests;
                 matchInterests.forEach(function(matchInterest) {
                     userInterests.forEach(function(interest) {
                         if (matchInterest._id.toString() == interest._id.toString()) {
                             
-                            if (match != prevMatch) {
-                                console.log("bingo!");
-                                matches.push(match);
+                            if (match == prevMatch) {
+                                match.matchScore = match.matchScore + 1;
                                 
                                 prevMatch = match;
                             } else {
-                                count++;
+                                matches.push(match);
                                 prevMatch = match;
+                                
                             }
-                            console.log("count", count);
                         }
                     })
                 })
             })
+            matches.sort(function(a, b){
+                if (a.matchScore < b.matchScore) return 1;
+                if (a.matchScore > b.matchScore) return -1;
+                return 0;
+            })
         }
-    
-            
-        
         res.status(200).json({matches})
     } catch(err){
 

@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
   contactList: [contactListSchema],  // ways to talk to matches, kept private
   matchRequests: [matchRequestsSchema], // user likes another user
   matchList: [matchListSchema], // list of users with two way match
+  matchScore: Number, // the score to show match strength
   ageRange: Number,  // 1 = (18-24), 2 = (25-30), etc.
   seekRange: Number, // same as above
   interests: [interestsSchema],
