@@ -119,7 +119,6 @@ async function getMatches(req, res){
         const userInterests = user.interests;
         let matches = [];
         let prevMatch = [];
-        
         if (user._id == req.user._id) {
             searchList.forEach(function(match) {
                 match.matchScore = 1;
@@ -130,7 +129,6 @@ async function getMatches(req, res){
                             
                             if (match == prevMatch) {
                                 match.matchScore = match.matchScore + 1;
-                                
                                 prevMatch = match;
                             } else {
                                 matches.push(match);

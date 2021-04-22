@@ -18,6 +18,7 @@ function App() {
   const [interests, setInterests] = useState([]);
   const [dislikes, setDislikes] = useState([]);
   const [matches, setMatches] = useState([]);
+  let matchNum = matches.length;
 
   function handleSignUpOrLogin(){
     setUser(userService.getUser());
@@ -74,6 +75,7 @@ function App() {
       try {
           const data = await profileAPI.addInterest(topicId);
           getInterests();
+          getMatches();
       } catch (err) {
           console.log(err)
       }
@@ -83,6 +85,7 @@ function App() {
       try {
           const data = await profileAPI.removeInterest(topicId);
           getInterests();
+          getMatches();
       } catch (err) {
           console.log(err)
       }
@@ -92,6 +95,7 @@ function App() {
       try {
           const data = await profileAPI.addDislike(topicId);
           getDislikes();
+          getMatches();
       } catch (err) {
           console.log(err)
       }
@@ -101,6 +105,7 @@ function App() {
       try {
           const data = await profileAPI.removeDislike(topicId);
           getDislikes();
+          getMatches();
       } catch (err) {
           console.log(err)
       }
@@ -120,7 +125,7 @@ function App() {
         {userService.getUser() ?
           <Grid id="container" columns={2}>
             <Grid.Column id="sidebar">
-              <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} addInterest={addInterest} addDislike={addDislike} deleteInterest={deleteInterest} deleteDislike={deleteDislike} />
+              <Sidebar user={user} topics={topics} interests={interests} dislikes={dislikes} addInterest={addInterest} addDislike={addDislike} deleteInterest={deleteInterest} deleteDislike={deleteDislike} matchNum={matchNum} />
             </Grid.Column>
             <Grid.Column id="content">
               <Content user={user} handleLogout={handleLogout} matches={matches} />
