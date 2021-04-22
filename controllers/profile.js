@@ -117,27 +117,60 @@ async function getMatches(req, res){
         const searchList = await User.find({});
         const user = await User.findById(req.user._id);
         const userInterests = user.interests;
-        let matches = [];
+        const userDislikes = user.dislikes;
+        const matches = [];
         let prevMatch = [];
         if (user._id == req.user._id) {
             searchList.forEach(function(match) {
-                match.matchScore = 1;
-                let matchInterests = match.interests;
-                matchInterests.forEach(function(matchInterest) {
-                    userInterests.forEach(function(interest) {
-                        if (matchInterest._id.toString() == interest._id.toString()) {
-                            
-                            if (match == prevMatch) {
-                                match.matchScore = match.matchScore + 1;
-                                prevMatch = match;
-                            } else {
-                                matches.push(match);
-                                prevMatch = match;
-                                
+                if (user._id.toString() == match._id.toString()) {
+                    null; // don't show ourself as a match
+                } else {
+                    match.matchScore = 1;
+                    let matchInterests = match.interests;
+                    let matchDislikes = match.dislikes;
+                    // first we add all the user who have matching interests
+                    matchInterests.forEach(function(matchInterest) {
+                        userInterests.forEach(function(interest) {
+                            if (matchInterest._id.toString() == interest._id.toString()) {
+                                if (match == prevMatch) {
+                                    match.matchScore = match.matchScore + 2;
+                                    prevMatch = match;
+                                } else {
+                                    prevMatch = match;
+                                }
                             }
-                        }
+                        })
+                        // and reduce the score if an interest is disliked
+                        userDislikes.forEach(function(dislike) {
+                            if (matchInterest._id.toString() == dislike._id.toString()) {
+                                match.matchScore = match.matchScore - 3;
+                            }
+                        })
                     })
-                })
+                    // next we add all the users who have matching dislikes
+                    matchDislikes.forEach(function(matchDislike) {
+                        userDislikes.forEach(function(dislike) {
+                            if (matchDislike._id.toString() == dislike._id.toString()) {
+                                if (match == prevMatch) {
+                                    match.matchScore = match.matchScore + 1;
+                                    prevMatch = match;
+                                } else {
+                                    prevMatch = match;
+                                }
+                            }
+                        })
+                        // and reduce the score if a dislike is an interest
+                        userInterests.forEach(function(interest) {
+                            if (matchDislike._id.toString() == interest._id.toString()) {
+                                match.matchScore = match.matchScore - 3;
+                            }
+                        })
+                    })
+                }
+                if (match.matchScore >= 0) {
+                    matches.push(match);
+                }
+                
             })
             matches.sort(function(a, b){
                 if (a.matchScore < b.matchScore) return 1;

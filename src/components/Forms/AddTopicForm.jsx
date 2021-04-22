@@ -79,6 +79,8 @@ export default function AddTopicForm({handleAddTopic, user}){
                   name="title"
                   value={state.title}
                   placeholder="topic title"
+                  minLength="3"
+                  maxLength="11"
                   onChange={handleChange}
                   required
               />
@@ -87,6 +89,8 @@ export default function AddTopicForm({handleAddTopic, user}){
                   name="description"
                   value={state.description}
                   placeholder="topic description"
+                  minLength="3"
+                  maxLength="11"
                   onChange={handleChange}
                   required
               />
@@ -99,6 +103,7 @@ export default function AddTopicForm({handleAddTopic, user}){
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
+                required
               />
               </Grid.Column>
             <Grid.Column >   
@@ -117,7 +122,7 @@ export default function AddTopicForm({handleAddTopic, user}){
             
             <Grid>
               <Grid.Column style={{ width: '90%', margin: '10px auto' }}>
-                <TopicFeed topics={topics} numPhotosCol={1} user={user} location={"form"} deleteTopic={deleteTopic} />
+                <TopicFeed topics={topics} user={user} location={"form"} deleteTopic={deleteTopic} />
               </Grid.Column>
             </Grid> 
     </>
