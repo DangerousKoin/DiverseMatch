@@ -24,6 +24,7 @@ function App() {
     setUser(userService.getUser());
     getInterests();
     getDislikes();
+    getMatches();
   };
 
   function handleLogout(){
