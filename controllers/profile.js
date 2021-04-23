@@ -119,7 +119,6 @@ async function getMatches(req, res){
         const userInterests = user.interests;
         const userDislikes = user.dislikes;
         const matches = [];
-        let prevMatch = [];
         if (user._id == req.user._id) {
             searchList.forEach(function(match) {
                 if (user._id.toString() == match._id.toString()) {
@@ -131,20 +130,15 @@ async function getMatches(req, res){
                     match.mismatchNum = 0;
                     let matchInterests = match.interests;
                     let matchDislikes = match.dislikes;
-                    // first we add all the user who have matching interests
+                    // increase match score by 2 per interest
                     matchInterests.forEach(function(matchInterest) {
                         userInterests.forEach(function(interest) {
                             if (matchInterest._id.toString() == interest._id.toString()) {
-                                if (match == prevMatch) {
-                                    match.matchScore = match.matchScore + 2;
-                                    match.matchIntNum = match.matchIntNum + 1;
-                                    prevMatch = match;
-                                } else {
-                                    prevMatch = match;
-                                }
+                                match.matchScore = match.matchScore + 2;
+                                match.matchIntNum = match.matchIntNum + 1;
                             }
                         })
-                        // and reduce the score if an interest is disliked
+                        // reduce the score by 3 if an interest is disliked
                         userDislikes.forEach(function(dislike) {
                             if (matchInterest._id.toString() == dislike._id.toString()) {
                                 match.matchScore = match.matchScore - 3;
@@ -152,20 +146,15 @@ async function getMatches(req, res){
                             }
                         })
                     })
-                    // next we add all the users who have matching dislikes
+                    // increase match score by 1 per dislike match
                     matchDislikes.forEach(function(matchDislike) {
                         userDislikes.forEach(function(dislike) {
                             if (matchDislike._id.toString() == dislike._id.toString()) {
-                                if (match == prevMatch) {
-                                    match.matchScore = match.matchScore + 1;
-                                    match.matchDisNum = match.matchDisNum + 1;
-                                    prevMatch = match;
-                                } else {
-                                    prevMatch = match;
-                                }
+                                match.matchScore = match.matchScore + 1;
+                                match.matchDisNum = match.matchDisNum + 1;
                             }
                         })
-                        // and reduce the score if a dislike is an interest
+                        // reduce the score by 3 if a dislike is an interest
                         userInterests.forEach(function(interest) {
                             if (matchDislike._id.toString() == interest._id.toString()) {
                                 match.matchScore = match.matchScore - 3;
@@ -174,7 +163,7 @@ async function getMatches(req, res){
                         })
                     })
                 }
-                if (match.matchScore >= 0) {
+                if (match.matchScore >= 0 && (match.matchIntNum >= 1 || match.matchDisNum >= 1)) {
                     matches.push(match);
                 }
                 
