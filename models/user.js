@@ -64,6 +64,9 @@ const userSchema = new mongoose.Schema({
   matchRequests: [matchRequestsSchema], // user likes another user
   matchList: [matchListSchema], // list of users with two way match
   matchScore: Number, // the score to show match strength
+  matchIntNum: Number, // how many interests match
+  matchDisNum: Number, // how many dislikes match
+  mismatchNum: Number, // how many mismatches of interests/dislikes
   ageRange: Number,  // 1 = (18-24), 2 = (25-30), etc.
   seekRange: Number, // same as above
   interests: [interestsSchema],
@@ -86,8 +89,8 @@ userSchema.set('toJSON', {
 // this is if you populate the user
 userSchema.set('toObject', {
   transform: (doc, ret, opt) => {
-   delete ret.password;
-   return ret;
+    delete ret.password;
+    return ret;
   }
 });
 

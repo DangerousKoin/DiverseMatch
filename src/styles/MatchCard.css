@@ -1,17 +1,16 @@
 #matchCard {
-    width: 23rem;
-    color:  #5b4883;
+  width: 23rem;
+  color:  #5b4883;
 }
 
 #matchImg {
-    border: 0.3rem solid #997ADB;
-    border-radius: 1rem;
-    object-fit: cover;
-    
-    height: 3rem;
-    width: 3rem;
-    margin: auto auto;
-  }
+  display: inline;
+  border: 5px solid #2BC9AF;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 9rem;
+  width: 9rem;
+}
 
 #matchContent {
   display: inline;
@@ -20,6 +19,5 @@
   padding: 0.25rem;
   border: 0.3rem solid #2BC9AF;
   border-radius: 1rem;
-  text-align: center;
   background-color: #ff7276;
 }

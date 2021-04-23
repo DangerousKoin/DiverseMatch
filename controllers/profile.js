@@ -125,7 +125,10 @@ async function getMatches(req, res){
                 if (user._id.toString() == match._id.toString()) {
                     null; // don't show ourself as a match
                 } else {
-                    match.matchScore = 1;
+                    match.matchScore = 0;
+                    match.matchIntNum = 0;
+                    match.matchDisNum = 0;
+                    match.mismatchNum = 0;
                     let matchInterests = match.interests;
                     let matchDislikes = match.dislikes;
                     // first we add all the user who have matching interests
@@ -134,6 +137,7 @@ async function getMatches(req, res){
                             if (matchInterest._id.toString() == interest._id.toString()) {
                                 if (match == prevMatch) {
                                     match.matchScore = match.matchScore + 2;
+                                    match.matchIntNum = match.matchIntNum + 1;
                                     prevMatch = match;
                                 } else {
                                     prevMatch = match;
@@ -144,6 +148,7 @@ async function getMatches(req, res){
                         userDislikes.forEach(function(dislike) {
                             if (matchInterest._id.toString() == dislike._id.toString()) {
                                 match.matchScore = match.matchScore - 3;
+                                match.mismatchNum = match.mismatchNum + 1;
                             }
                         })
                     })
@@ -153,6 +158,7 @@ async function getMatches(req, res){
                             if (matchDislike._id.toString() == dislike._id.toString()) {
                                 if (match == prevMatch) {
                                     match.matchScore = match.matchScore + 1;
+                                    match.matchDisNum = match.matchDisNum + 1;
                                     prevMatch = match;
                                 } else {
                                     prevMatch = match;
@@ -163,6 +169,7 @@ async function getMatches(req, res){
                         userInterests.forEach(function(interest) {
                             if (matchDislike._id.toString() == interest._id.toString()) {
                                 match.matchScore = match.matchScore - 3;
+                                match.mismatchNum = match.mismatchNum + 1;
                             }
                         })
                     })

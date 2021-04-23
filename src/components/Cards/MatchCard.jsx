@@ -16,9 +16,12 @@ function MatchCard({match}) {
                     size='tiny'
                     src={match.avatar ? match.avatar : 'https://react.semantic-ui.com/images/wireframe/square-image.png'}
                 />
-            <strong>{match.username}</strong>
+            <h3><strong>{match.username}</strong></h3>
+            <strong>Match Score: {match.matchScore}</strong>
             <br />
-            Match Score: {match.matchScore}
+            Interests: {match.matchIntNum} Dislikes: {match.matchDisNum}
+            <br />
+            Mismatches: {match.mismatchNum}
             </Card.Content>
           </Card>
     </Grid.Row>
