@@ -3,8 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import '../styles/App.css';
 import Content from '../layouts/Content';
 import Sidebar from '../layouts/Sidebar';
-import LoginForm from '../components/Forms/LoginForm';
-import SignupForm from '../components/Forms/SignupForm';
+import WelcomeForm from '../components/Forms/WelcomeForm';
 import userService from '../utils/userService';
 import * as topicsAPI from '../utils/topicService';
 import * as profileAPI from '../utils/profileService';
@@ -134,15 +133,11 @@ function App() {
           </Grid>
         :
           <Route exact path="/">
-            <Redirect to="/login" />
+            <Redirect to="/welcome" />
           </Route>
         }
-        
-        <Route exact path="/login">
-          <LoginForm handleSignUpOrLogin={handleSignUpOrLogin} />
-        </Route>
-        <Route exact path="/signup">
-          <SignupForm handleSignUpOrLogin={handleSignUpOrLogin} />
+        <Route exact path="/welcome">
+          <WelcomeForm handleSignUpOrLogin={handleSignUpOrLogin} />
         </Route>
 
       </Route>
