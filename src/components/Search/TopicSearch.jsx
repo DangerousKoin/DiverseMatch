@@ -20,11 +20,13 @@ export default function Search({addInterest, addDislike}){
   async function handleSubmit(e){
     e.preventDefault()
     try {
-      if (state.title === "" || state.title === null) {getTopics()} else {
+      if (state.title) {
         const data = await topicsAPI.search(state.title);
         const formData = new FormData();
         formData.append('title', state.title);
         setTopics([...data.topics]);
+      } else {
+        getTopics()
       }
       
     } catch(err){
@@ -54,6 +56,7 @@ export default function Search({addInterest, addDislike}){
                   className="search-input"
                   name="title"
                   placeholder="Search Topics"
+                  clear
                   onChange={handleChange}
               />
             </Grid.Column>

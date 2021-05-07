@@ -3,21 +3,20 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/profile/'
 
 export function addInterest(id){
-  
   return fetch(`${BASE_URL}/interest/${id}`, {
     method: 'POST',
     headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
-      }
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
   }).then(res => res.json());
 }
 
 export function removeInterest(id){
   return fetch(`${BASE_URL}/interest/${id}`, {
-      method: 'DELETE',
-      headers: {
-          'Authorization': 'Bearer ' + tokenService.getToken()
-        }
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
   }).then(res => res.json());
 }
 
@@ -25,17 +24,17 @@ export function addDislike(id){
   return fetch(`${BASE_URL}/dislike/${id}`, {
     method: 'POST',
     headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
-      }
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
   }).then(res => res.json());
 }
 
 export function removeDislike(id){
   return fetch(`${BASE_URL}/dislike/${id}`, {
-      method: 'DELETE',
-      headers: {
-          'Authorization': 'Bearer ' + tokenService.getToken()
-        }
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
   }).then(res => res.json());
 }
 

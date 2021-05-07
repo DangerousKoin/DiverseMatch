@@ -35,8 +35,6 @@ export default function AddTopicForm({user}){
       title: '',
       description: ''
     })
-    
-    
   };
 
   function handleFileInput(e){
@@ -72,7 +70,6 @@ export default function AddTopicForm({user}){
         <Segment id='elementCont'>
         
             <Form  autoComplete="off" onSubmit={handleSubmit}>
-
             <Form.Input
                   className="form-control"
                   name="title"
