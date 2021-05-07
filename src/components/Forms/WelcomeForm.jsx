@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../System/ErrorMessage';
-import { Button, Form, Grid, Header, Image, Segment, Modal } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import userService from '../../utils/userService';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 export default function SignupForm(props){
-  const [invalidForm, setValidForm] = useState(false);
+  const [invalidForm] = useState(false);
   const [logError, setLoginError ] = useState('');
   const [signError, setSignupError ] = useState('');
   const [selectedFile, setSelectedFile] = useState('');

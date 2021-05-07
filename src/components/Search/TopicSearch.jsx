@@ -20,7 +20,7 @@ export default function Search({addInterest, addDislike}){
   async function handleSubmit(e){
     e.preventDefault()
     try {
-      if (state.title == "" || state.title == null) {getTopics()} else {
+      if (state.title === "" || state.title === null) {getTopics()} else {
         const data = await topicsAPI.search(state.title);
         const formData = new FormData();
         formData.append('title', state.title);

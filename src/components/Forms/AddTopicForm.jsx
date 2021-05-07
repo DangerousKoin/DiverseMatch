@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TopicFeed from '../Feeds/TopicFeed';
 import * as topicsAPI from '../../utils/topicService';
-
 import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 
-export default function AddTopicForm({handleAddTopic, user}){
+export default function AddTopicForm({user}){
   const [selectedFile, setSelectedFile] = useState('')
   const [topics, setTopics] = useState([]);
   const [state, setState] = useState({
@@ -46,7 +45,7 @@ export default function AddTopicForm({handleAddTopic, user}){
 
   async function deleteTopic(topicId) {
     try {
-        const data = await topicsAPI.removeTopic(topicId);
+        await topicsAPI.removeTopic(topicId);
         getTopics();
     } catch (err) {
         console.log(err)

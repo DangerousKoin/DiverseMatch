@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/MatchCard.css';
-import { Card, Image, Button, Grid } from 'semantic-ui-react'
+import { Card, Image, Grid } from 'semantic-ui-react'
 
 
 function MatchCard({match}) {

@@ -9,7 +9,7 @@ export default function MatchFeed({matches}){
             {matches ?
                 matches.map((match) => {
                     return ( 
-                            <MatchCard match={match} key={match._id} />
+                        <MatchCard match={match} key={match._id} />
                     )
                 })
             :

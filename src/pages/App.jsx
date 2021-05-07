@@ -73,7 +73,7 @@ function App() {
 
     async function addInterest(topicId) {
       try {
-          const data = await profileAPI.addInterest(topicId);
+          await profileAPI.addInterest(topicId);
           getInterests();
           getMatches();
       } catch (err) {
@@ -83,7 +83,7 @@ function App() {
   
     async function deleteInterest(topicId) {
       try {
-          const data = await profileAPI.removeInterest(topicId);
+          await profileAPI.removeInterest(topicId);
           getInterests();
           getMatches();
       } catch (err) {
@@ -93,7 +93,7 @@ function App() {
   
     async function addDislike(topicId) {
       try {
-          const data = await profileAPI.addDislike(topicId);
+          await profileAPI.addDislike(topicId);
           getDislikes();
           getMatches();
       } catch (err) {
@@ -103,7 +103,7 @@ function App() {
   
     async function deleteDislike(topicId) {
       try {
-          const data = await profileAPI.removeDislike(topicId);
+          await profileAPI.removeDislike(topicId);
           getDislikes();
           getMatches();
       } catch (err) {
