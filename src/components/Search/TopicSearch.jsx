@@ -56,7 +56,6 @@ export default function Search({addInterest, addDislike}){
                   className="search-input"
                   name="title"
                   placeholder="Search Topics"
-                  clear
                   onChange={handleChange}
               />
             </Grid.Column>
